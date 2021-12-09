@@ -1,0 +1,371 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Installation &mdash; mevis 0.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/doctools.js"></script>
+        <script src="../_static/js/require.js"></script>
+    
+    <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Examples" href="examples/index.html" />
+    <link rel="prev" title="Package references" href="package_references.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../index.html">
+          
+
+          
+            
+            <img src="../_static/mevis.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="package_references.html">Package references</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#mevis">mevis</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#optional-graphviz">Optional: Graphviz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#optional-selenium">Optional: Selenium</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#optional-jupyter-notebook">Optional: Jupyter notebook</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples/index.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/index.html">API documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">mevis</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Installation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../_sources/rst/installation.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="installation">
+<h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
+<p>This page explains the installation of <strong>mevis</strong> and its optional dependencies
+<strong>Graphviz</strong> for additional layout calculation algorithms,
+<strong>Selenium</strong> for static image exports and <strong>Jupyter notebooks</strong> for embedded visualizations.</p>
+<section id="mevis">
+<h2>mevis<a class="headerlink" href="#mevis" title="Permalink to this headline">¶</a></h2>
+<p>This package is available on the
+<a class="reference external" href="https://pypi.org">Python Package Index (PyPI)</a>
+under the name
+<a class="reference external" href="https://pypi.org/project/mevis">mevis</a>.
+It can be installed with Python’s default package manager
+<a class="reference external" href="https://pypi.org/project/pip">pip</a>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>pip install mevis
+</pre></div>
+</div>
+<p>Further remarks:</p>
+<ul class="simple">
+<li><p>mevis is compatible with <a class="reference external" href="https://www.python.org/downloads">Python 3.5 upwards</a>.</p></li>
+<li><p>Using an environment manager like
+<a class="reference external" href="https://virtualenv.pypa.io">virtualenv</a> or
+<a class="reference external" href="https://docs.conda.io">conda</a>
+is often a good idea. Such tools allow to create a
+<a class="reference external" href="https://packaging.python.org/tutorials/installing-packages/#creating-virtual-environments">virtual environment</a>
+into which pip can install the package in an isolated fashion instead of globally
+on your system. Thereby it does not interfere with the installation of other projects,
+which may require a different version of some shared dependency.</p></li>
+</ul>
+</section>
+<section id="optional-graphviz">
+<h2>Optional: Graphviz<a class="headerlink" href="#optional-graphviz" title="Permalink to this headline">¶</a></h2>
+<p>mevis requires
+<a class="reference external" href="https://graphviz.org/">Graphviz</a>
+to make some additional layout calculation algorithms available.
+It can not be installed via pip, but package managers of various
+operating systems support it. Instructions are available in the
+<a class="reference external" href="https://graphviz.org/download/">Graphviz installation guide</a>.</p>
+<p>In Debian and Ubuntu it can be installed with the package manager apt:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo apt install graphviz
+</pre></div>
+</div>
+</section>
+<section id="optional-selenium">
+<h2>Optional: Selenium<a class="headerlink" href="#optional-selenium" title="Permalink to this headline">¶</a></h2>
+<p>mevis requires
+<a class="reference external" href="https://selenium-python.readthedocs.io/">Selenium</a>
+to export visualizations as static images in JPG, PNG and SVG format.
+It can be installed in two steps:</p>
+<ol class="arabic">
+<li><p><a class="reference external" href="https://selenium-python.readthedocs.io/installation.html#installing-python-bindings-for-selenium">Selenium Python bindings</a>
+are available on the Python Package Index (PyPI) under the name
+<a class="reference external" href="https://pypi.org/project/selenium/">selenium</a>.
+It can be installed with Python’s default package manager
+<a class="reference external" href="https://pypi.org/project/pip">pip</a>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>pip install selenium
+</pre></div>
+</div>
+</li>
+<li><p><a class="reference external" href="https://selenium-python.readthedocs.io/installation.html#drivers">Webbrowser and associated driver</a></p>
+<p>Selenium connects Python to a webbrowser via a suitable driver.
+Both the webbrowser and corresponding driver need to be
+installed manually. Two options are supported by mevis:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.google.com/intl/en/chrome/">Chrome</a>
+browser with
+<a class="reference external" href="https://sites.google.com/chromium.org/driver/">ChromeDriver</a></p></li>
+<li><p><a class="reference external" href="https://www.mozilla.org/firefox">Firefox</a>
+browser with
+<a class="reference external" href="https://github.com/mozilla/geckodriver/releases">geckodriver</a></p></li>
+</ul>
+<p>Further remarks:</p>
+<ul class="simple">
+<li><p>mevis uses Chrome by default, but Firefox can be chosen with an argument of the
+export functions.</p></li>
+<li><p>The browser version and driver version need to be compatible.</p></li>
+<li><p>The driver executable needs to be in a directory that is listed in the
+<code class="docutils literal notranslate"><span class="pre">PATH</span></code> environment variable of the operating system, so that Python can find it.
+This can be achieved by putting the executable in a directory that is already
+listed in the <code class="docutils literal notranslate"><span class="pre">PATH</span></code> environment variable, such as <code class="docutils literal notranslate"><span class="pre">/usr/bin</span></code> or <code class="docutils literal notranslate"><span class="pre">/usr/local/bin</span></code>
+on Linux, or by putting the executable in another directory and adding it to <code class="docutils literal notranslate"><span class="pre">PATH</span></code>,
+for example on Linux with an entry in the <code class="docutils literal notranslate"><span class="pre">.bashrc</span></code> file in the user directory.</p></li>
+</ul>
+</li>
+</ol>
+</section>
+<section id="optional-jupyter-notebook">
+<h2>Optional: Jupyter notebook<a class="headerlink" href="#optional-jupyter-notebook" title="Permalink to this headline">¶</a></h2>
+<p>mevis requires
+<a class="reference external" href="https://jupyter.org">Jupyter notebook</a>
+for displaying metagraphs inline in notebooks in form of embedded HTML visualizations,
+accompanied by Python code and Markdown comments.
+A notebook is a file ending with <code class="docutils literal notranslate"><span class="pre">.ipynb</span></code>, which can be created, modified and
+executed with the
+<a class="reference external" href="https://jupyter-notebook.readthedocs.io/en/stable/notebook.html#starting-the-notebook-server">notebook server</a>
+and a webbrowser opened by it. Jupyter notebook can be installed according
+to its <a class="reference external" href="https://jupyter.org/install">recommended installation</a>
+with the package manager <a class="reference external" href="https://docs.conda.io">conda</a>
+from channel <a class="reference external" href="https://anaconda.org/conda-forge/notebook">conda-forge</a>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>conda install -y -c conda-forge notebook
+</pre></div>
+</div>
+<p>Further remarks:</p>
+<ul>
+<li><p><strong>Caution</strong>: Some plots may not show up in the notebook with default settings.
+Instead only a blank area is visible. The reason is a parameter called
+<code class="docutils literal notranslate"><span class="pre">iopub_data_rate_limit</span></code> in Jupyter’s
+<a class="reference external" href="https://jupyter-notebook.readthedocs.io/en/stable/config.html">config system</a>.
+Its value <a class="reference external" href="https://github.com/jupyter/notebook/issues/2287">is chosen rather low by default</a>.
+Plots that contain much data can therefore be blocked.
+This problem can be solved by increasing the value of the parameter,
+which can be done in two ways:</p>
+<ol class="arabic">
+<li><p>Permanently change it with a config file in the directory <code class="docutils literal notranslate"><span class="pre">~/.jupyter</span></code> or</p></li>
+<li><p>Temporarily change it when opening a notebook by adding an optional argument
+to the start-up command:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>jupyter notebook --NotebookApp.iopub_data_rate_limit<span class="o">=</span><span class="m">1</span>.0e12
+</pre></div>
+</div>
+</li>
+</ol>
+</li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="examples/index.html" class="btn btn-neutral float-right" title="Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="package_references.html" class="btn btn-neutral float-left" title="Package references" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Robert Haas (Vienna, Austria).
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

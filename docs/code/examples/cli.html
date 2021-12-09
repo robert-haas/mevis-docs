@@ -1,0 +1,924 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Command line interface &mdash; mevis 0.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/js/require.js"></script>
+        <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+        <script>window.MathJax = {"tex": {"inlineMath": [["$", "$"], ["\\(", "\\)"]], "processEscapes": true}, "options": {"ignoreHtmlClass": "tex2jax_ignore|mathjax_ignore|document", "processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="Using MOSES to evolve programs" href="moses.html" />
+    <link rel="prev" title="Advanced usage" href="advanced.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html">
+          
+
+          
+            
+            <img src="../../_static/mevis.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../rst/package_references.html">Package references</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst/installation.html">Installation</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../rst/examples/index.html">Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="basic.html">Basic usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="advanced.html">Advanced usage</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Command line interface</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#Show-the-help-text">Show the help text</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Use-it-minimalistically">Use it minimalistically</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Show-status-messages-and-overwrite-existing-files">Show status messages and overwrite existing files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Choose-another-backend">Choose another backend</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Calculate-a-layout">Calculate a layout</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Filter-the-AtomSpace">Filter the AtomSpace</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#Annotate-the-graph-to-modify-visual-elements">Annotate the graph to modify visual elements</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="moses.html">Using MOSES to evolve programs</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../../rst/api/index.html">API documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">mevis</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../rst/examples/index.html">Examples</a> &raquo;</li>
+        
+      <li>Command line interface</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/code/examples/cli.ipynb.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS for nbsphinx extension */
+
+/* remove conflicting styling from Sphinx themes */
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt *,
+div.nbinput.container div.input_area pre,
+div.nboutput.container div.output_area pre,
+div.nbinput.container div.input_area .highlight,
+div.nboutput.container div.output_area .highlight {
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+}
+
+div.nbinput.container > div[class*=highlight],
+div.nboutput.container > div[class*=highlight] {
+    margin: 0;
+}
+
+div.nbinput.container div.prompt *,
+div.nboutput.container div.prompt * {
+    background: none;
+}
+
+div.nboutput.container div.output_area .highlight,
+div.nboutput.container div.output_area pre {
+    background: unset;
+}
+
+div.nboutput.container div.output_area div.highlight {
+    color: unset;  /* override Pygments text color */
+}
+
+/* avoid gaps between output lines */
+div.nboutput.container div[class*=highlight] pre {
+    line-height: normal;
+}
+
+/* input/output containers */
+div.nbinput.container,
+div.nboutput.container {
+    display: -webkit-flex;
+    display: flex;
+    align-items: flex-start;
+    margin: 0;
+    width: 100%;
+}
+@media (max-width: 540px) {
+    div.nbinput.container,
+    div.nboutput.container {
+        flex-direction: column;
+    }
+}
+
+/* input container */
+div.nbinput.container {
+    padding-top: 5px;
+}
+
+/* last container */
+div.nblast.container {
+    padding-bottom: 5px;
+}
+
+/* input prompt */
+div.nbinput.container div.prompt pre {
+    color: #307FC1;
+}
+
+/* output prompt */
+div.nboutput.container div.prompt pre {
+    color: #BF5B3D;
+}
+
+/* all prompts */
+div.nbinput.container div.prompt,
+div.nboutput.container div.prompt {
+    width: 1200;
+    padding-top: 5px;
+    position: relative;
+    user-select: none;
+}
+
+div.nbinput.container div.prompt > div,
+div.nboutput.container div.prompt > div {
+    position: absolute;
+    right: 0;
+    margin-right: 0.3ex;
+}
+
+@media (max-width: 540px) {
+    div.nbinput.container div.prompt,
+    div.nboutput.container div.prompt {
+        width: unset;
+        text-align: left;
+        padding: 0.4em;
+    }
+    div.nboutput.container div.prompt.empty {
+        padding: 0;
+    }
+
+    div.nbinput.container div.prompt > div,
+    div.nboutput.container div.prompt > div {
+        position: unset;
+    }
+}
+
+/* disable scrollbars on prompts */
+div.nbinput.container div.prompt pre,
+div.nboutput.container div.prompt pre {
+    overflow: hidden;
+}
+
+/* input/output area */
+div.nbinput.container div.input_area,
+div.nboutput.container div.output_area {
+    -webkit-flex: 1;
+    flex: 1;
+    overflow: auto;
+}
+@media (max-width: 540px) {
+    div.nbinput.container div.input_area,
+    div.nboutput.container div.output_area {
+        width: 100%;
+    }
+}
+
+/* input area */
+div.nbinput.container div.input_area {
+    border: 1px solid #e0e0e0;
+    border-radius: 2px;
+    /*background: #f5f5f5;*/
+}
+
+/* override MathJax center alignment in output cells */
+div.nboutput.container div[class*=MathJax] {
+    text-align: left !important;
+}
+
+/* override sphinx.ext.imgmath center alignment in output cells */
+div.nboutput.container div.math p {
+    text-align: left;
+}
+
+/* standard error */
+div.nboutput.container div.output_area.stderr {
+    background: #fdd;
+}
+
+/* ANSI colors */
+.ansi-black-fg { color: #3E424D; }
+.ansi-black-bg { background-color: #3E424D; }
+.ansi-black-intense-fg { color: #282C36; }
+.ansi-black-intense-bg { background-color: #282C36; }
+.ansi-red-fg { color: #E75C58; }
+.ansi-red-bg { background-color: #E75C58; }
+.ansi-red-intense-fg { color: #B22B31; }
+.ansi-red-intense-bg { background-color: #B22B31; }
+.ansi-green-fg { color: #00A250; }
+.ansi-green-bg { background-color: #00A250; }
+.ansi-green-intense-fg { color: #007427; }
+.ansi-green-intense-bg { background-color: #007427; }
+.ansi-yellow-fg { color: #DDB62B; }
+.ansi-yellow-bg { background-color: #DDB62B; }
+.ansi-yellow-intense-fg { color: #B27D12; }
+.ansi-yellow-intense-bg { background-color: #B27D12; }
+.ansi-blue-fg { color: #208FFB; }
+.ansi-blue-bg { background-color: #208FFB; }
+.ansi-blue-intense-fg { color: #0065CA; }
+.ansi-blue-intense-bg { background-color: #0065CA; }
+.ansi-magenta-fg { color: #D160C4; }
+.ansi-magenta-bg { background-color: #D160C4; }
+.ansi-magenta-intense-fg { color: #A03196; }
+.ansi-magenta-intense-bg { background-color: #A03196; }
+.ansi-cyan-fg { color: #60C6C8; }
+.ansi-cyan-bg { background-color: #60C6C8; }
+.ansi-cyan-intense-fg { color: #258F8F; }
+.ansi-cyan-intense-bg { background-color: #258F8F; }
+.ansi-white-fg { color: #C5C1B4; }
+.ansi-white-bg { background-color: #C5C1B4; }
+.ansi-white-intense-fg { color: #A1A6B2; }
+.ansi-white-intense-bg { background-color: #A1A6B2; }
+
+.ansi-default-inverse-fg { color: #FFFFFF; }
+.ansi-default-inverse-bg { background-color: #000000; }
+
+.ansi-bold { font-weight: bold; }
+.ansi-underline { text-decoration: underline; }
+
+
+div.nbinput.container div.input_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight] > pre,
+div.nboutput.container div.output_area div[class*=highlight].math,
+div.nboutput.container div.output_area.rendered_html,
+div.nboutput.container div.output_area > div.output_javascript,
+div.nboutput.container div.output_area:not(.rendered_html) > img{
+    padding: 5px;
+    margin: 0;
+}
+
+/* fix copybtn overflow problem in chromium (needed for 'sphinx_copybutton') */
+div.nbinput.container div.input_area > div[class^='highlight'],
+div.nboutput.container div.output_area > div[class^='highlight']{
+    overflow-y: hidden;
+}
+
+/* hide copybtn icon on prompts (needed for 'sphinx_copybutton') */
+.prompt a.copybtn {
+    display: none;
+}
+
+/* Some additional styling taken form the Jupyter notebook CSS */
+div.rendered_html table {
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  color: black;
+  font-size: 12px;
+  table-layout: fixed;
+}
+div.rendered_html thead {
+  border-bottom: 1px solid black;
+  vertical-align: bottom;
+}
+div.rendered_html tr,
+div.rendered_html th,
+div.rendered_html td {
+  text-align: right;
+  vertical-align: middle;
+  padding: 0.5em 0.5em;
+  line-height: normal;
+  white-space: normal;
+  max-width: none;
+  border: none;
+}
+div.rendered_html th {
+  font-weight: bold;
+}
+div.rendered_html tbody tr:nth-child(odd) {
+  background: #f5f5f5;
+}
+div.rendered_html tbody tr:hover {
+  background: rgba(66, 165, 245, 0.2);
+}
+
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="Command-line-interface">
+<h1>Command line interface<a class="headerlink" href="#Command-line-interface" title="Permalink to this headline">¶</a></h1>
+<p>This Jupyter notebook gives an overview of the command line interface (CLI) that comes with the Python package <a class="reference external" href="https://pypi.org/project/mevis">mevis</a> after installation with pip. The .ipynb file can be found <a class="reference external" href="https://github.com/robert-haas/mevis/tree/master/examples">here</a>.</p>
+<section id="Show-the-help-text">
+<h2>Show the help text<a class="headerlink" href="#Show-the-help-text" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[1]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">!</span>mevis -h
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+usage: mevis [-h] -i input_filepath [-o output_filepath] [-f] [-v]
+             [-b backend] [-l layout_method] [-cd capture_delay]
+             [-ft filter_target] [-fc filter_context] [-fm filter_mode] [-gua]
+             [-gud] [-nl node_label] [-nc node_color] [-no node_opacity]
+             [-ns node_size] [-nsh node_shape] [-nbc node_border_color]
+             [-nbs node_border_size] [-nlc node_label_color]
+             [-nls node_label_size] [-nh node_hover] [-ncl node_click]
+             [-ni node_image] [-np node_properties] [-el edge_label]
+             [-ec edge_color] [-eo edge_opacity] [-es edge_size]
+             [-elc edge_label_color] [-els edge_label_size] [-eh edge_hover]
+             [-ecl edge_click] [--kwargs [KWARGS [KWARGS ...]]]
+
+Visualize an OpenCog Atomspace as graph with two kinds of vertices.
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -i input_filepath     path of input file (.scm) containing an Atomspace
+  -o output_filepath    path of output file, with following cases
+                        - none     create plot and display it in webbrowser
+                        - .html    create plot and export it to a HTML file
+                        - .jpg     create plot and export it to a JPG file
+                        - .png     create plot and export it to a PNG file
+                        - .svg     create plot and export it to a SVG file
+                                   works only with backend d3
+                        - .gml     create graph and export it to GML file
+                        - .gml.gz  same but file is compressed with gzip
+                        - .gml.bz2 same but file is compressed with bzip2
+  -f, --force           overwrite output_filepath if it already exists
+  -v, --verbose         print messages about intermediary results
+  -b backend            backend library for graph visualization
+                        &#34;d3&#34; = d3.js
+                        &#34;vis&#34; = vis-network.js
+                        &#34;three&#34; = 3d-force-directed.js using three.js
+  -l layout_method      layout method to calculate node coordinates
+                        - &#34;dot&#34;
+                        - &#34;neato&#34;
+                        - &#34;twopi&#34;
+                        - &#34;circo&#34;
+                        - &#34;fdp&#34;
+                        - &#34;sfdp&#34;
+                        - &#34;bipartite&#34;
+                        - &#34;circular&#34;
+                        - &#34;kamada_kawai&#34;
+                        - &#34;planar&#34;
+                        - &#34;random&#34;
+                        - &#34;shell&#34;
+                        - &#34;spring&#34;
+                        - &#34;spectral&#34;
+                        - &#34;spiral&#34;
+  -cd capture_delay     delay in seconds when capturing a static image
+                        for JPG/PNG/SVG export. Default: 3.5
+  -ft filter_target     filter target to select Atoms
+  -fc filter_context    filter context to expaned selected atoms to
+                        - &#34;atom&#34; = selected Atoms
+                        - &#34;in&#34; = selection + incoming neighbors
+                        - &#34;out&#34; = selection + outgoing neighbors
+                        - &#34;both&#34; = selection + incoming and outgoing
+                          neighbors
+                        - &#34;in-tree&#34; = selection + repeated incoming
+                          neighbors
+                        - &#34;out-tree&#34; = selection + repeated outgoing
+                          neighbors
+                        - &#34;(&#39;in&#39;, n)&#34; = selection + incoming neighbors
+                          within distance n
+                        - &#34;(&#39;out&#39;, n)&#34; = selection + outgoing neighbors
+                          within distance n
+                        - &#34;(&#39;both&#39;, n)&#34; = selection + incoming and outgoing
+                          neighbors within distance n
+  -fm filter_mode       filter mode deciding how to use the selection
+                        - &#34;include&#34; = include selected Atoms to output
+                        - &#34;exclude&#34; = exclude selected Atoms from output
+  -gua                  graph is unannotated, no properties are added
+  -gud                  graph is undirected, no arrows are drawn
+  -nl node_label        text shown below node
+  -nc node_color
+  -no node_opacity
+  -ns node_size
+  -nsh node_shape
+  -nbc node_border_color
+  -nbs node_border_size
+  -nlc node_label_color
+  -nls node_label_size
+  -nh node_hover        text shown when hovering with mouse over a node
+  -ncl node_click       text shown in div below plot when clicking on a node
+  -ni node_image        image drawn inside node, URL or data URL
+  -np node_properties   other annotations for a node given as key/val dict
+  -el edge_label        text shown in midpoint of edge
+  -ec edge_color
+  -eo edge_opacity
+  -es edge_size
+  -elc edge_label_color
+  -els edge_label_size
+  -eh edge_hover        text shown when hovering with mouse over an edge
+  -ecl edge_click       text shown in div below plot when clicking on an edge
+  --kwargs [KWARGS [KWARGS ...]]
+                        optional keyword arguments forwarded to plot function
+</pre></div></div>
+</div>
+</section>
+<section id="Use-it-minimalistically">
+<h2>Use it minimalistically<a class="headerlink" href="#Use-it-minimalistically" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-i</span></code>: An <strong>input file</strong> (.scm) to load an AtomSpace from.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-o</span></code>: An optional <strong>output file</strong>.</p></li>
+</ul>
+<p>Following three cases are possible.</p>
+<ol class="arabic simple">
+<li><p>No output file: Creates a graph visualization and <strong>displays it</strong> in the default webbrowser.</p></li>
+</ol>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[2]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">!</span>mevis -i moses.scm
+</pre></div>
+</div>
+</div>
+<ol class="arabic simple" start="2">
+<li><p>Output file ending with <code class="docutils literal notranslate"><span class="pre">.html</span></code>: Creates a graph visualization and stores it to a <strong>HTML file</strong>.</p></li>
+</ol>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[3]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">!</span>mevis -i moses.scm -o moses.html
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+argparse.ArgumentTypeError: The provided output_filepath &#34;moses.html&#34; already exists. You can use --force to overwrite it.
+</pre></div></div>
+</div>
+<ol class="arabic simple" start="3">
+<li><p>Output file ending with <code class="docutils literal notranslate"><span class="pre">.gml</span></code>, <code class="docutils literal notranslate"><span class="pre">.gml.gz</span></code> or <code class="docutils literal notranslate"><span class="pre">.gml.bz2</span></code>: Creates a graph representation and stores it to a <strong>GML file</strong> that can be <strong>compressed with gzip or bzip2</strong> to considerably reduce size.</p></li>
+</ol>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[4]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">!</span>mevis -i moses.scm -o moses.gml
+<span class="o">!</span>mevis -i moses.scm -o moses.gml.gz
+<span class="o">!</span>mevis -i moses.scm -o moses.gml.bz2
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Show-status-messages-and-overwrite-existing-files">
+<h2>Show status messages and overwrite existing files<a class="headerlink" href="#Show-status-messages-and-overwrite-existing-files" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--verbose</span></code>: If provided, messages are printed about individual steps and their intermediate results.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--force</span></code>: If provided, output files are overwritten if they already exist.</p></li>
+</ul>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[5]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">!</span>mevis -i moses.scm -o moses.html --force --verbose
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Importing an Atomspace from file &#34;moses.scm&#34;.
+Done. It contains 16 Atoms.
+
+Converting the AtomSpace to a graph
+Done. It contains 16 vertices and 21 edges.
+
+Storing a visualization as HTML file to &#34;moses.html&#34;.
+Done. It has a file size of 646834 bytes.
+</pre></div></div>
+</div>
+</section>
+<section id="Choose-another-backend">
+<h2>Choose another backend<a class="headerlink" href="#Choose-another-backend" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-b</span></code>: If provided, the chosen backend is used to create the visualization. For available options, please look at the help text.</p></li>
+</ul>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[6]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">!</span>mevis -i moses.scm -o moses_d3.html -b d3
+<span class="o">!</span>mevis -i moses.scm -o moses_three.html -b three
+<span class="o">!</span>mevis -i moses.scm -o moses_vis.html -b vis
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Calculate-a-layout">
+<h2>Calculate a layout<a class="headerlink" href="#Calculate-a-layout" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-l</span></code>: If provided, the chosen method is used for calculating x and y coordinates for nodes. For available options, please look at the help text.</p></li>
+</ul>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[7]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">!</span>mevis -i moses.scm -o moses_layout1.html -l dot --verbose
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Importing an Atomspace from file &#34;moses.scm&#34;.
+Done. It contains 16 Atoms.
+
+Converting the AtomSpace to a graph
+Done. It contains 16 vertices and 21 edges.
+
+Calculating a layout with &#34;dot&#34;.
+Done.
+
+Storing a visualization as HTML file to &#34;moses_layout1.html&#34;.
+Done. It has a file size of 647318 bytes.
+</pre></div></div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[8]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">!</span>mevis -i moses.scm -o moses_layout2.html -l neato
+<span class="o">!</span>mevis -i moses.scm -o moses_layout3.html -l twopi
+<span class="o">!</span>mevis -i moses.scm -o moses_layout4.html -l bipartite
+<span class="o">!</span>mevis -i moses.scm -o moses_layout5.html -l shell
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Filter-the-AtomSpace">
+<h2>Filter the AtomSpace<a class="headerlink" href="#Filter-the-AtomSpace" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-t</span></code>: Filter target which selects Atoms. There are three options on the command line:</p>
+<ul>
+<li><p>Name that is compared against Atom name and type name.</p></li>
+<li><p>List of multiple names</p></li>
+<li><p>Lambda function that gets an Atom as input and must return True or False to select or deselect it.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-c</span></code>: Filter context which can expand the selection.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-m</span></code>: Filter mode which decides whether the selection is included or excluded from the result</p></li>
+</ul>
+<p>Some possible targets</p>
+<div class="nbinput docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[9]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">!</span>mevis -i moses.scm -o moses_filtered1.html -ft PredicateNode --verbose
+<span class="o">!</span>mevis -i moses.scm -o moses_filtered2.html -ft <span class="s2">&quot;[&#39;AndLink&#39;, &#39;OrLink&#39;, &#39;NotLink&#39;]&quot;</span>
+<span class="o">!</span>mevis -i moses.scm -o moses_filtered3.html -ft <span class="s2">&quot;lambda atom: atom.is_link()&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="nboutput nblast docutils container">
+<div class="prompt empty docutils container">
+</div>
+<div class="output_area docutils container">
+<div class="highlight"><pre>
+Importing an Atomspace from file &#34;moses.scm&#34;.
+Done. It contains 16 Atoms.
+
+Filtering the AtomSpace
+Done. It contains 5 remaining Atoms.
+
+Converting the AtomSpace to a graph
+Done. It contains 5 vertices and 0 edges.
+
+Storing a visualization as HTML file to &#34;moses_filtered1.html&#34;.
+Done. It has a file size of 642835 bytes.
+</pre></div></div>
+</div>
+<p>Some possible contexts</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[10]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">!</span>mevis -i moses.scm -o moses_filtered4.html -ft PredicateNode -fc both
+<span class="o">!</span>mevis -i moses.scm -o moses_filtered5.html -ft PredicateNode -fc <span class="s2">&quot;(&#39;in&#39;, 2)&quot;</span>
+<span class="o">!</span>mevis -i moses.scm -o moses_filtered6.html -ft OrLink -fc <span class="s2">&quot;out-tree&quot;</span>
+</pre></div>
+</div>
+</div>
+<p>Two possible modes</p>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[11]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="o">!</span>mevis -i moses.scm -o moses_filtered7.html -ft PredicateNode -fc both -fm include
+<span class="o">!</span>mevis -i moses.scm -o moses_filtered8.html -ft PredicateNode -fc both -fm exclude
+</pre></div>
+</div>
+</div>
+</section>
+<section id="Annotate-the-graph-to-modify-visual-elements">
+<h2>Annotate the graph to modify visual elements<a class="headerlink" href="#Annotate-the-graph-to-modify-visual-elements" title="Permalink to this headline">¶</a></h2>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[12]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Create an unannotated graph</span>
+<span class="o">!</span>mevis -i moses.scm -o moses_unannotated.html -gua
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[13]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Create an undirected graph and set its node color, node size, edge color, edge size with constants</span>
+<span class="o">!</span>mevis -i moses.scm -o moses_annotated1.html -gud -nc blue -ns <span class="m">20</span> -ec blue -es <span class="m">4</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[14]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Set node color, node size, edge color, edge size with lambda functions</span>
+<span class="o">!</span>mevis -i moses.scm -o moses_annotated2.html <span class="err">\</span>
+    <span class="o">-</span><span class="n">nc</span> <span class="s2">&quot;lambda atom: &#39;#33339a&#39; if atom.is_link() else &#39;green&#39;&quot;</span> \
+    <span class="o">-</span><span class="n">ec</span> <span class="s2">&quot;lambda atom1, atom2: &#39;#33339a&#39; if atom2.is_link() else &#39;green&#39;&quot;</span> \
+    <span class="o">-</span><span class="n">ns</span> <span class="s2">&quot;lambda atom: 12 if atom.is_node() else 18&quot;</span> \
+    <span class="o">-</span><span class="n">es</span> <span class="s2">&quot;lambda atom1, atom2: 1 if atom2.is_node() else 3&quot;</span>
+</pre></div>
+</div>
+</div>
+<div class="nbinput nblast docutils container">
+<div class="prompt highlight-none notranslate"><div class="highlight"><pre><span></span>[15]:
+</pre></div>
+</div>
+<div class="input_area highlight-ipython3 notranslate"><div class="highlight"><pre>
+<span></span><span class="c1"># Adjust all possible annotations (see advanced.ipynb for the same example in Python instead of Bash)</span>
+<span class="o">!</span>mevis -i moses.scm -o moses_annotated3.html -f <span class="err">\</span>
+    <span class="o">-</span><span class="n">b</span> <span class="n">d3</span> \
+    <span class="o">-</span><span class="n">gud</span> \
+    <span class="o">-</span><span class="n">nl</span> <span class="s2">&quot;lambda atom: atom.name if atom.is_node() else atom.type_name.replace(&#39;Link&#39;, &#39;&#39;)&quot;</span> \
+    <span class="o">-</span><span class="n">nc</span> <span class="s2">&quot;lambda atom: &#39;red&#39; if atom.is_node() </span><span class="se">\</span>
+<span class="s2">         else &#39;blue&#39; if atom.type_name == &#39;AndLink&#39; </span><span class="se">\</span>
+<span class="s2">         else &#39;green&#39; if atom.type_name == &#39;OrLink&#39; </span><span class="se">\</span>
+<span class="s2">         else &#39;orange&#39;&quot;</span> \
+    <span class="o">-</span><span class="n">no</span> <span class="mf">0.9</span> \
+    <span class="o">-</span><span class="n">ns</span> <span class="s2">&quot;lambda atom: 20 if atom.type_name in [&#39;AndLink&#39;, &#39;OrLink&#39;] else 12&quot;</span> \
+    <span class="o">-</span><span class="n">nsh</span> <span class="s2">&quot;lambda atom: &#39;rectangle&#39; if atom.type_name == &#39;AndLink&#39; </span><span class="se">\</span>
+<span class="s2">          else &#39;hexagon&#39; if atom.type_name == &#39;OrLink&#39; </span><span class="se">\</span>
+<span class="s2">          else &#39;circle&#39;&quot;</span> \
+    <span class="o">-</span><span class="n">nbc</span> <span class="n">white</span> \
+    <span class="o">-</span><span class="n">nbs</span> <span class="mf">2.0</span> \
+    <span class="o">-</span><span class="n">nlc</span> <span class="s2">&quot;lambda atom: &#39;red&#39; if atom.is_node() </span><span class="se">\</span>
+<span class="s2">          else &#39;blue&#39; if atom.type_name == &#39;AndLink&#39; </span><span class="se">\</span>
+<span class="s2">          else &#39;green&#39; if atom.type_name == &#39;OrLink&#39; </span><span class="se">\</span>
+<span class="s2">          else &#39;orange&#39;&quot;</span> \
+    <span class="o">-</span><span class="n">nls</span> <span class="mf">12.0</span> \
+    <span class="o">-</span><span class="n">nh</span> <span class="s2">&quot;lambda atom: &#39;A </span><span class="si">{}</span><span class="s2"> with Atomese code:</span><span class="se">\n</span><span class="si">{}</span><span class="s2">&#39;.format(atom.type_name, atom.short_string())&quot;</span> \
+    <span class="o">-</span><span class="n">ncl</span> <span class="s2">&quot;lambda atom: atom.short_string()&quot;</span> \
+    <span class="o">-</span><span class="n">np</span> <span class="s2">&quot;lambda atom: dict(x=-300) if atom.is_node() else dict(x=-300+200*len(atom.out))&quot;</span>\
+    <span class="o">-</span><span class="n">el</span> <span class="s2">&quot;lambda atom1, atom2: &#39;</span><span class="si">{}{}</span><span class="s2">&#39;.format(atom1.type_name[0], atom2.type_name[0])&quot;</span> \
+    <span class="o">-</span><span class="n">ec</span> <span class="s2">&quot;lambda atom1, atom2: &#39;lightgray&#39; if atom2.is_node() </span><span class="se">\</span>
+<span class="s2">         else &#39;red&#39; if atom1.is_node() </span><span class="se">\</span>
+<span class="s2">         else &#39;blue&#39; if atom1.type_name == &#39;AndLink&#39; </span><span class="se">\</span>
+<span class="s2">         else &#39;green&#39; if atom1.type_name == &#39;OrLink&#39; </span><span class="se">\</span>
+<span class="s2">         else &#39;orange&#39;&quot;</span> \
+    <span class="o">-</span><span class="n">eo</span> <span class="mf">0.5</span> \
+    <span class="o">-</span><span class="n">es</span> <span class="s2">&quot;lambda atom1, atom2: 5 if atom2.is_node() else 2.5&quot;</span> \
+    <span class="o">-</span><span class="n">elc</span> <span class="s2">&quot;lambda atom1, atom2: &#39;red&#39; if atom1.is_node() </span><span class="se">\</span>
+<span class="s2">          else &#39;blue&#39; if atom1.type_name == &#39;AndLink&#39; </span><span class="se">\</span>
+<span class="s2">          else &#39;green&#39; if atom1.type_name == &#39;OrLink&#39; </span><span class="se">\</span>
+<span class="s2">          else &#39;orange&#39;&quot;</span> \
+    <span class="o">-</span><span class="n">els</span> <span class="mi">8</span> \
+    <span class="o">-</span><span class="n">eh</span> <span class="s2">&quot;lambda atom1, atom2: &#39;</span><span class="si">{}</span><span class="s2"> to </span><span class="si">{}</span><span class="s2">&#39;.format(atom1.type_name, atom2.type_name)&quot;</span> \
+    <span class="o">-</span><span class="n">ecl</span> <span class="s2">&quot;lambda atom1, atom2: &#39;Edge connects </span><span class="si">{}</span><span class="s2"> with </span><span class="si">{}</span><span class="s2">&#39;.format(atom1.type_name, atom2.type_name)&quot;</span> \
+    <span class="o">--</span><span class="n">kwargs</span> <span class="n">edge_curvature</span><span class="o">=</span><span class="mf">0.2</span> <span class="n">show_edge_label</span><span class="o">=</span><span class="kc">True</span> <span class="n">many_body_force_strength</span><span class="o">=-</span><span class="mi">1000</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="moses.html" class="btn btn-neutral float-right" title="Using MOSES to evolve programs" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="advanced.html" class="btn btn-neutral float-left" title="Advanced usage" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Robert Haas (Vienna, Austria).
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

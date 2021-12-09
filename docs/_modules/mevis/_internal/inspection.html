@@ -1,0 +1,328 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>mevis._internal.inspection &mdash; mevis 0.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/js/require.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/mevis.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../rst/package_references.html">Package references</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../rst/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../rst/examples/index.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../rst/api/index.html">API documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">mevis</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>mevis._internal.inspection</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for mevis._internal.inspection</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">_nx</span>
+<span class="kn">from</span> <span class="nn">opencog.type_constructors</span> <span class="kn">import</span> <span class="n">AtomSpace</span> <span class="k">as</span> <span class="n">_AtomSpace</span>
+
+<span class="kn">from</span> <span class="nn">.args</span> <span class="kn">import</span> <span class="n">check_arg</span> <span class="k">as</span> <span class="n">_check_arg</span>
+
+
+<div class="viewcode-block" id="inspect"><a class="viewcode-back" href="../../../rst/api/package.html#mevis.inspect">[docs]</a><span class="k">def</span> <span class="nf">inspect</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">count_details</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Inspect an AtomSpace or graph by counting elements.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data : AtomSpace, list of Atoms, NetworkX Graph, NetworkX DiGraph</span>
+<span class="sd">    count_details : bool</span>
+<span class="sd">        If ``True``, some detailed properties of the AtomSpace or Graph are counted.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    counts : dict</span>
+<span class="sd">        A dictionary of element/count pairs.</span>
+
+<span class="sd">        - If AtomSpace or list of Atoms:</span>
+<span class="sd">          A dictionary that contains counts of Atoms, Nodes, Links</span>
+<span class="sd">          and another dictionary with counts for each Atom type.</span>
+<span class="sd">        - If NetworkX Graph or NetworkX DiGraph:</span>
+<span class="sd">          A dictionary that contains counts of nodes, edges and annotations.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Argument processing</span>
+    <span class="n">_check_arg</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="n">_AtomSpace</span><span class="p">,</span> <span class="n">_nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">,</span> <span class="n">_nx</span><span class="o">.</span><span class="n">DiGraph</span><span class="p">))</span>
+
+    <span class="c1"># Inspection</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="n">_AtomSpace</span><span class="p">)):</span>
+        <span class="n">stats</span> <span class="o">=</span> <span class="n">inspect_atomspace</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">count_details</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">stats</span> <span class="o">=</span> <span class="n">inspect_graph</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">count_details</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">stats</span></div>
+
+
+<span class="k">def</span> <span class="nf">inspect_atomspace</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">count_details</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">count_details</span><span class="p">:</span>
+        <span class="c1"># Count</span>
+        <span class="n">num_nodes</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">num_links</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">num_types</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">atom</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">atom</span><span class="o">.</span><span class="n">is_node</span><span class="p">():</span>
+                <span class="n">num_nodes</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">num_links</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">key</span> <span class="o">=</span> <span class="n">atom</span><span class="o">.</span><span class="n">type_name</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">num_types</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                <span class="n">num_types</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+        <span class="c1"># Combine</span>
+        <span class="n">stats</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+            <span class="n">atoms</span><span class="o">=</span><span class="n">num_nodes</span><span class="o">+</span><span class="n">num_links</span><span class="p">,</span>
+            <span class="n">nodes</span><span class="o">=</span><span class="n">num_nodes</span><span class="p">,</span>
+            <span class="n">links</span><span class="o">=</span><span class="n">num_links</span><span class="p">,</span>
+            <span class="n">types</span><span class="o">=</span><span class="n">num_types</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Count</span>
+        <span class="n">num_nodes</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="n">num_links</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">atom</span> <span class="ow">in</span> <span class="n">data</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">atom</span><span class="o">.</span><span class="n">is_node</span><span class="p">():</span>
+                <span class="n">num_nodes</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">num_links</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="c1"># Combine</span>
+        <span class="n">stats</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+            <span class="n">atoms</span><span class="o">=</span><span class="n">num_nodes</span><span class="o">+</span><span class="n">num_links</span><span class="p">,</span>
+            <span class="n">nodes</span><span class="o">=</span><span class="n">num_nodes</span><span class="p">,</span>
+            <span class="n">links</span><span class="o">=</span><span class="n">num_links</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">stats</span>
+
+
+<span class="k">def</span> <span class="nf">inspect_graph</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">count_details</span><span class="p">):</span>
+    <span class="k">if</span> <span class="n">count_details</span><span class="p">:</span>
+        <span class="c1"># Count</span>
+        <span class="n">num_nodes</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">nodes</span><span class="p">)</span>
+        <span class="n">num_edges</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span>
+        <span class="n">node_cnt</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">name</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">nodes</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="n">name</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">node_cnt</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                    <span class="n">node_cnt</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="n">val</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">node_cnt</span><span class="p">:</span>
+            <span class="n">node_cnt</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">node_cnt</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
+        <span class="n">edge_cnt</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">n1</span><span class="p">,</span> <span class="n">n2</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">edges</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">key</span><span class="p">,</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">data</span><span class="o">.</span><span class="n">edges</span><span class="p">[</span><span class="n">n1</span><span class="p">,</span> <span class="n">n2</span><span class="p">]</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+                <span class="k">try</span><span class="p">:</span>
+                    <span class="n">edge_cnt</span><span class="p">[</span><span class="n">key</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+                <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                    <span class="n">edge_cnt</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="nb">set</span><span class="p">([</span><span class="n">val</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">edge_cnt</span><span class="p">:</span>
+            <span class="n">edge_cnt</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">edge_cnt</span><span class="p">[</span><span class="n">key</span><span class="p">])</span>
+        <span class="c1"># Combine</span>
+        <span class="n">stats</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+            <span class="n">nodes</span><span class="o">=</span><span class="n">num_nodes</span><span class="p">,</span>
+            <span class="n">edges</span><span class="o">=</span><span class="n">num_edges</span><span class="p">,</span>
+            <span class="n">node_properties</span><span class="o">=</span><span class="n">node_cnt</span><span class="p">,</span>
+            <span class="n">edge_properties</span><span class="o">=</span><span class="n">edge_cnt</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Count</span>
+        <span class="n">num_nodes</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">nodes</span><span class="p">)</span>
+        <span class="n">num_edges</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">data</span><span class="o">.</span><span class="n">edges</span><span class="p">)</span>
+        <span class="c1"># Combine</span>
+        <span class="n">stats</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span>
+            <span class="n">nodes</span><span class="o">=</span><span class="n">num_nodes</span><span class="p">,</span>
+            <span class="n">edges</span><span class="o">=</span><span class="n">num_edges</span><span class="p">,</span>
+        <span class="p">)</span>
+    <span class="k">return</span> <span class="n">stats</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Robert Haas (Vienna, Austria).
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

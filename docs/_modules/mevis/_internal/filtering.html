@@ -1,0 +1,475 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>mevis._internal.filtering &mdash; mevis 0.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+        <script src="../../../_static/jquery.js"></script>
+        <script src="../../../_static/underscore.js"></script>
+        <script src="../../../_static/doctools.js"></script>
+        <script src="../../../_static/js/require.js"></script>
+    
+    <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../../index.html">
+          
+
+          
+            
+            <img src="../../../_static/mevis.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../rst/package_references.html">Package references</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../rst/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../rst/examples/index.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../rst/api/index.html">API documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">mevis</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>mevis._internal.filtering</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for mevis._internal.filtering</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">collections.abc</span> <span class="kn">import</span> <span class="n">Callable</span> <span class="k">as</span> <span class="n">_Callable</span>
+
+<span class="kn">from</span> <span class="nn">opencog.atomspace</span> <span class="kn">import</span> <span class="n">Atom</span> <span class="k">as</span> <span class="n">_Atom</span>
+<span class="kn">from</span> <span class="nn">opencog.type_constructors</span> <span class="kn">import</span> <span class="n">AtomSpace</span> <span class="k">as</span> <span class="n">_AtomSpace</span>
+
+<span class="kn">from</span> <span class="nn">.args</span> <span class="kn">import</span> <span class="n">check_arg</span> <span class="k">as</span> <span class="n">_check_arg</span>
+
+
+<span class="n">FILTER_CONTEXTS</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;atom&#39;</span><span class="p">,</span> <span class="s1">&#39;in&#39;</span><span class="p">,</span> <span class="s1">&#39;out&#39;</span><span class="p">,</span> <span class="s1">&#39;both&#39;</span><span class="p">,</span> <span class="s1">&#39;in-tree&#39;</span><span class="p">,</span> <span class="s1">&#39;out-tree&#39;</span><span class="p">]</span>
+
+
+<div class="viewcode-block" id="filter"><a class="viewcode-back" href="../../../rst/api/package.html#mevis.filter">[docs]</a><span class="k">def</span> <span class="nf">filter</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="s1">&#39;atom&#39;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;include&#39;</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Apply a filter to an Atomspace or list of Atoms and return a list of selected Atoms.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    data : Atomspace, list of Atoms</span>
+<span class="sd">        The given Atomspace or list of Atoms that is filtered and thereby reduced to a</span>
+<span class="sd">        shorter list of Atoms.</span>
+<span class="sd">    target : str, int, Atom, list, Callable</span>
+<span class="sd">        The targets that are selected by this filtering function.</span>
+
+<span class="sd">        Possible types and their meaning:</span>
+
+<span class="sd">        - ``str``: A string that is matched against ``.name`` and ``.type_name`` of each Atom.</span>
+<span class="sd">          Capitalization is ignored.</span>
+
+<span class="sd">          Examples:</span>
+
+<span class="sd">          - ``target=&quot;andlink&quot;`` will include all Atoms of type ``AndLink``.</span>
+<span class="sd">          - ``target=&quot;$1&quot;`` will include all Atoms with name ``&quot;$1&quot;``.</span>
+
+<span class="sd">        - ``int``: An OpenCog Atom type that is matched against ``.type`` of each Atom.</span>
+
+<span class="sd">          Examples:</span>
+
+<span class="sd">          - ``target=opencog.atomspace.types.OrLink`` selects all Atoms of type ``OrLink``.</span>
+
+<span class="sd">        - ``Atom``: An Atom that is used as it is.</span>
+
+<span class="sd">          Examples:</span>
+
+<span class="sd">          - ``target=list(atomspace)[4]`` selects the fifth Atom in the AtomSpace.</span>
+
+<span class="sd">        - ``list``: A list of str, int and/or Atom. The types can be mixed freely.</span>
+
+<span class="sd">          Examples:</span>
+
+<span class="sd">          - ``target=[&quot;andlink&quot;, &quot;OrLink&quot;]`` selects all Atoms of type ``AndLink`` and ``OrLink``.</span>
+<span class="sd">          - ``target=[&quot;notlink&quot;, &quot;$1&quot;, opencog.atomspace.types.OrLink, list(atomspace)[4]]``</span>
+<span class="sd">            selects all Atoms of type ``NotLink``, all Atoms with name ``&quot;$1&quot;``,</span>
+<span class="sd">            all Atoms of type ``OrLink``, and the fifth Atom in the AtomSpace.</span>
+
+<span class="sd">        - ``Callable``: A function that gets an Atom as input and needs to</span>
+<span class="sd">          return ``True`` or ``False`` to indicate whether the Atom is selected or not.</span>
+
+<span class="sd">          Examples:</span>
+
+<span class="sd">          - ``target=lambda atom: atom.is_link()`` selects all Atoms that are Links</span>
+<span class="sd">          - ``target=lambda atom: atom.name.startswith(&quot;$&quot;)`` selects all Atoms</span>
+<span class="sd">            that have a name starting with ``$``.</span>
+<span class="sd">    context : str, tuple</span>
+<span class="sd">        The context of the selection of Atoms to which it shall be expanded.</span>
+
+<span class="sd">        Possible values:</span>
+
+<span class="sd">        - ``atom``: Only the Atoms specified by ``target`` are selected.</span>
+<span class="sd">        - ``in``: The Atoms specified by ``target`` and</span>
+<span class="sd">          all their incoming neighbors are selected.</span>
+<span class="sd">        - ``out``: The Atoms specified by ``target`` and</span>
+<span class="sd">          all their outgoing neighbors are selected.</span>
+<span class="sd">        - ``both``: The Atoms specified by ``target`` and</span>
+<span class="sd">          all their incoming and outgoing neighbors are selected.</span>
+<span class="sd">          This is also known as</span>
+<span class="sd">          `neighborhood &lt;https://en.wikipedia.org/wiki/Neighbourhood_(graph_theory)&gt;`__</span>
+<span class="sd">          in graph theory or</span>
+<span class="sd">          `egocentric network &lt;https://research.library.gsu.edu/c.php?g=916490&amp;p=6612505&gt;`__</span>
+<span class="sd">          in social network analysis.</span>
+<span class="sd">        - ``in_tree``: The Atoms specified by ``target`` and all their incoming neighbors are</span>
+<span class="sd">          selected, which is repeated until nothing can be added anymore.</span>
+<span class="sd">          This is also known as</span>
+<span class="sd">          `in-tree or anti-arborescence &lt;https://en.wikipedia.org/wiki/Arborescence_(graph_theory)&gt;`__</span>
+<span class="sd">          in graph theory.</span>
+<span class="sd">        - ``out_tree``: The Atoms specified by ``target`` and all their outgoing Atoms are</span>
+<span class="sd">          selected, which is repeated until nothing can be added anymore.</span>
+<span class="sd">          This is also known as</span>
+<span class="sd">          `out-tree or arborescence &lt;https://en.wikipedia.org/wiki/Arborescence_(graph_theory)&gt;`__</span>
+<span class="sd">          in graph theory.</span>
+<span class="sd">        - ``(context, size)``: In the case of ``in``, ``out`` and ``both`` the context</span>
+<span class="sd">          can come with a size, which means how often the selected Atoms are expanded in</span>
+<span class="sd">          the chosen way.</span>
+
+<span class="sd">          Examples:</span>
+
+<span class="sd">          - ``(&quot;out&quot;, 2)`` means that the selected Atoms are expanded twice by their</span>
+<span class="sd">            outgoing Atoms, instead of just once when using ``out``.</span>
+<span class="sd">          - ``(&quot;in&quot;, 3)`` means that the selected Atoms are expanded thrice by their</span>
+<span class="sd">            incoming Atoms, instead of just once when using ``in``.</span>
+<span class="sd">          - ``(&quot;both&quot;, 2)`` means that the selected Atoms are expanded twice by their</span>
+<span class="sd">            incoming and outgoing Atoms, instead of just once when using ``both``.</span>
+<span class="sd">            Note that the result can be and usually is different than the combined</span>
+<span class="sd">            results from ``(&quot;in&quot;, 2)`` and ``(&quot;out&quot;, 2)``, because adding an ingoing</span>
+<span class="sd">            neighbor in step 1 and then its outgoing neighbors in step 2 (or vice versa)</span>
+<span class="sd">            captures more Atoms.</span>
+
+<span class="sd">    mode : str</span>
+<span class="sd">        The selection of Atoms can be the result of the filtering, but it is also possible</span>
+<span class="sd">        to exclude those Atoms and instead return all other ones.</span>
+
+<span class="sd">        Possible values:</span>
+
+<span class="sd">        - ``include``: The selection is included in the result.</span>
+<span class="sd">        - ``exclude``: The selection is excluded from the result. Everything else is included.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    atoms : list of Atoms</span>
+
+<span class="sd">    Note</span>
+<span class="sd">    ----</span>
+<span class="sd">    Chaining is possible, which means that the output of a filter application can be used</span>
+<span class="sd">    as input for another one. This allows to combine different targets, contexts and modes</span>
+<span class="sd">    by performing a sequence of filtering steps. Example::</span>
+
+<span class="sd">        import mevis as mv</span>
+
+<span class="sd">        atomspace = mv.load(&#39;moses.scm&#39;)</span>
+<span class="sd">        atoms = mv.filter(atomspace, target=&quot;AndLink&quot;, context=&quot;out-tree&quot;, mode=&quot;include&quot;)</span>
+<span class="sd">        atoms = mv.filter(atoms, target=&quot;PredicateNode&quot;, context=&quot;atom&quot;, mode=&quot;exclude&quot;)</span>
+<span class="sd">        mv.plot(atoms, &#39;vis&#39;, &#39;dot&#39;)</span>
+
+<span class="sd">    The first line includes Atoms of type ``AndLink`` and their maximally expanded</span>
+<span class="sd">    outgoing neighborhood. The second line excludes Atoms of type ``PredicateNode``</span>
+<span class="sd">    from the previous result.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Argument processing</span>
+    <span class="n">_check_arg</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="s1">&#39;data&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nb">list</span><span class="p">,</span> <span class="n">_AtomSpace</span><span class="p">))</span>
+    <span class="n">_check_arg</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="s1">&#39;target&#39;</span><span class="p">,</span> <span class="p">(</span><span class="nb">str</span><span class="p">,</span> <span class="nb">int</span><span class="p">,</span> <span class="nb">list</span><span class="p">,</span> <span class="n">_Callable</span><span class="p">,</span> <span class="n">_Atom</span><span class="p">))</span>
+    <span class="n">_check_arg</span><span class="p">(</span><span class="n">mode</span><span class="p">,</span> <span class="s1">&#39;mode&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;include&#39;</span><span class="p">,</span> <span class="s1">&#39;exclude&#39;</span><span class="p">])</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">):</span>
+        <span class="n">context</span><span class="p">,</span> <span class="n">size</span> <span class="o">=</span> <span class="n">context</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">_check_arg</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="s1">&#39;context&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;in&#39;</span><span class="p">,</span> <span class="s1">&#39;out&#39;</span><span class="p">,</span> <span class="s1">&#39;both&#39;</span><span class="p">])</span>
+            <span class="n">_check_arg</span><span class="p">(</span><span class="n">size</span><span class="p">,</span> <span class="s1">&#39;size&#39;</span><span class="p">,</span> <span class="nb">int</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">size</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s1">&#39;Context size needs to be equal to or greater than zero.&#39;</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">excp</span><span class="p">:</span>
+            <span class="n">message</span> <span class="o">=</span> <span class="s1">&#39;Argument &quot;context&quot; got an invalid tuple as value.&#39;</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="n">message</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">excp</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">_check_arg</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="s1">&#39;context&#39;</span><span class="p">,</span> <span class="nb">str</span><span class="p">,</span> <span class="n">FILTER_CONTEXTS</span><span class="p">)</span>
+        <span class="n">size</span> <span class="o">=</span> <span class="mi">1</span>
+    <span class="n">given_atoms</span> <span class="o">=</span> <span class="n">data</span>
+
+    <span class="c1"># Filter: Select all Atoms as specified by target</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">_Atom</span><span class="p">):</span>
+        <span class="n">selected_atoms</span> <span class="o">=</span> <span class="p">[</span><span class="n">target</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">func</span> <span class="o">=</span> <span class="n">_prepare_filter_func</span><span class="p">(</span><span class="n">target</span><span class="p">)</span>
+        <span class="n">selected_atoms</span> <span class="o">=</span> <span class="p">[</span><span class="n">atom</span> <span class="k">for</span> <span class="n">atom</span> <span class="ow">in</span> <span class="n">given_atoms</span> <span class="k">if</span> <span class="n">func</span><span class="p">(</span><span class="n">atom</span><span class="p">)]</span>
+
+    <span class="c1"># Expand by context: if desired, include some neighboring atoms</span>
+    <span class="n">selected_atoms</span> <span class="o">=</span> <span class="n">_expand</span><span class="p">(</span><span class="n">selected_atoms</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+
+    <span class="c1"># Select by mode: if desired, invert the selected set of atoms (=exclude instead of include)</span>
+    <span class="n">atoms</span> <span class="o">=</span> <span class="n">_include_or_exclude</span><span class="p">(</span><span class="n">selected_atoms</span><span class="p">,</span> <span class="n">given_atoms</span><span class="p">,</span> <span class="n">mode</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">atoms</span></div>
+
+
+<span class="k">def</span> <span class="nf">_prepare_filter_func</span><span class="p">(</span><span class="n">target</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Create a filter function depending on the type of the given target.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="n">target</span> <span class="o">=</span> <span class="n">target</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span>
+
+        <span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">atom</span><span class="p">):</span>
+            <span class="c1"># match: name, type name</span>
+            <span class="k">return</span> <span class="n">atom</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">target</span> \
+                <span class="ow">or</span> <span class="n">atom</span><span class="o">.</span><span class="n">type_name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="o">==</span> <span class="n">target</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">atom</span><span class="p">):</span>
+            <span class="c1"># match: type</span>
+            <span class="k">return</span> <span class="nb">int</span><span class="p">(</span><span class="n">atom</span><span class="o">.</span><span class="n">type</span><span class="p">)</span> <span class="o">==</span> <span class="n">target</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="nb">list</span><span class="p">):</span>
+        <span class="n">target</span> <span class="o">=</span> <span class="nb">set</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="nb">str</span><span class="p">)</span> <span class="k">else</span> <span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">target</span><span class="p">)</span>
+
+        <span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">atom</span><span class="p">):</span>
+            <span class="c1"># match: name, type name, type, atom</span>
+            <span class="k">return</span> <span class="n">atom</span><span class="o">.</span><span class="n">type_name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">target</span> <span class="ow">or</span> \
+                <span class="n">atom</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">lower</span><span class="p">()</span> <span class="ow">in</span> <span class="n">target</span> <span class="ow">or</span> \
+                <span class="nb">int</span><span class="p">(</span><span class="n">atom</span><span class="o">.</span><span class="n">type</span><span class="p">)</span> <span class="ow">in</span> <span class="n">target</span> <span class="ow">or</span> \
+                <span class="n">atom</span> <span class="ow">in</span> <span class="n">target</span>
+    <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">target</span><span class="p">,</span> <span class="n">_Callable</span><span class="p">):</span>
+        <span class="n">func</span> <span class="o">=</span> <span class="n">target</span>
+    <span class="k">return</span> <span class="n">func</span>
+
+
+<span class="k">def</span> <span class="nf">_expand</span><span class="p">(</span><span class="n">atoms</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">context_size</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Expand a list of atoms depending on the type of context that shall be included.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">context</span> <span class="o">==</span> <span class="s1">&#39;in&#39;</span><span class="p">:</span>
+        <span class="c1"># Add all Atoms in the incoming neighborhood of an Atom, repeat it if context size &gt; 1</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">context_size</span><span class="p">):</span>
+            <span class="n">expansion</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">atom</span> <span class="ow">in</span> <span class="n">atoms</span><span class="p">:</span>
+                <span class="n">expansion</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">atom</span><span class="p">)</span>
+                <span class="n">expansion</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">atom</span><span class="o">.</span><span class="n">incoming</span><span class="p">)</span>
+            <span class="n">atoms</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">expansion</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">context</span> <span class="o">==</span> <span class="s1">&#39;out&#39;</span><span class="p">:</span>
+        <span class="c1"># Add all Atoms in the outgoing neighborhood of an Atom, repeat it if context size &gt; 1</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">context_size</span><span class="p">):</span>
+            <span class="n">expansion</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">atom</span> <span class="ow">in</span> <span class="n">atoms</span><span class="p">:</span>
+                <span class="n">expansion</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">atom</span><span class="p">)</span>
+                <span class="n">expansion</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">atom</span><span class="o">.</span><span class="n">out</span><span class="p">)</span>
+            <span class="n">atoms</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">expansion</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">context</span> <span class="o">==</span> <span class="s1">&#39;both&#39;</span><span class="p">:</span>
+        <span class="c1"># Add all Atoms in the neighborhood of an Atom, repeat it if context size &gt; 1</span>
+        <span class="k">for</span> <span class="n">_</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">context_size</span><span class="p">):</span>
+            <span class="n">expansion</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+            <span class="k">for</span> <span class="n">atom</span> <span class="ow">in</span> <span class="n">atoms</span><span class="p">:</span>
+                <span class="n">expansion</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">atom</span><span class="p">)</span>
+                <span class="n">expansion</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">atom</span><span class="o">.</span><span class="n">incoming</span><span class="p">)</span>
+                <span class="n">expansion</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">atom</span><span class="o">.</span><span class="n">out</span><span class="p">)</span>
+            <span class="n">atoms</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">expansion</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">context</span> <span class="o">==</span> <span class="s1">&#39;in-tree&#39;</span><span class="p">:</span>
+        <span class="c1"># Add all Atoms in the incoming neighborhood of an Atom, repeat it until all is reached</span>
+        <span class="n">expansion</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">atom</span> <span class="ow">in</span> <span class="n">atoms</span><span class="p">:</span>
+            <span class="n">expansion</span> <span class="o">=</span> <span class="n">expansion</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">_dfs_in</span><span class="p">(</span><span class="n">atom</span><span class="p">))</span>
+        <span class="n">atoms</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">expansion</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="n">context</span> <span class="o">==</span> <span class="s1">&#39;out-tree&#39;</span><span class="p">:</span>
+        <span class="c1"># Add all Atoms in the outgoing neighborhood of an Atom, repeat it until all is reached</span>
+        <span class="n">expansion</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">atom</span> <span class="ow">in</span> <span class="n">atoms</span><span class="p">:</span>
+            <span class="n">expansion</span> <span class="o">=</span> <span class="n">expansion</span><span class="o">.</span><span class="n">union</span><span class="p">(</span><span class="n">_dfs_out</span><span class="p">(</span><span class="n">atom</span><span class="p">))</span>
+        <span class="n">atoms</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">expansion</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">atoms</span>
+
+
+<span class="k">def</span> <span class="nf">_include_or_exclude</span><span class="p">(</span><span class="n">selected</span><span class="p">,</span> <span class="n">given</span><span class="p">,</span> <span class="n">mode</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Include or exclude the selected Atoms from the initially given Atoms.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">mode</span> <span class="o">==</span> <span class="s1">&#39;exclude&#39;</span><span class="p">:</span>
+        <span class="n">selected</span> <span class="o">=</span> <span class="p">[</span><span class="n">atom</span> <span class="k">for</span> <span class="n">atom</span> <span class="ow">in</span> <span class="n">given</span> <span class="k">if</span> <span class="n">atom</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">selected</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">selected</span>
+
+
+<span class="k">def</span> <span class="nf">_dfs_out</span><span class="p">(</span><span class="n">atom</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Traverse an Atom&#39;s outgoing neighborhood iteratively with a depth-first search.&quot;&quot;&quot;</span>
+    <span class="n">atoms</span> <span class="o">=</span> <span class="p">[</span><span class="n">atom</span><span class="p">]</span>
+    <span class="n">stack</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">atom</span><span class="o">.</span><span class="n">out</span><span class="p">)</span>
+    <span class="k">while</span> <span class="n">stack</span><span class="p">:</span>
+        <span class="n">atom</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">atoms</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">atom</span><span class="p">)</span>
+        <span class="n">stack</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">atom</span><span class="o">.</span><span class="n">out</span>
+    <span class="k">return</span> <span class="n">atoms</span>
+
+
+<span class="k">def</span> <span class="nf">_dfs_in</span><span class="p">(</span><span class="n">atom</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Traverse an Atom&#39;s incoming neighborhood iteratively with a depth-first search.&quot;&quot;&quot;</span>
+    <span class="n">atoms</span> <span class="o">=</span> <span class="p">[</span><span class="n">atom</span><span class="p">]</span>
+    <span class="n">stack</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">atom</span><span class="o">.</span><span class="n">incoming</span><span class="p">)</span>
+    <span class="k">while</span> <span class="n">stack</span><span class="p">:</span>
+        <span class="n">atom</span> <span class="o">=</span> <span class="n">stack</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="n">atoms</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">atom</span><span class="p">)</span>
+        <span class="n">stack</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">atom</span><span class="o">.</span><span class="n">incoming</span>
+    <span class="k">return</span> <span class="n">atoms</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Robert Haas (Vienna, Austria).
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

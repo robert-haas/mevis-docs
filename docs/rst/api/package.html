@@ -1,0 +1,821 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>mevis &mdash; mevis 0.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/js/require.js"></script>
+    
+    <script type="text/javascript" src="../../_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="prev" title="API documentation" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="../../index.html">
+          
+
+          
+            
+            <img src="../../_static/mevis.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../package_references.html">Package references</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/index.html">Examples</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="index.html">API documentation</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">mevis</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#plot">plot</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#inspect">inspect</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#filter">filter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#convert">convert</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#layout">layout</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create">create</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#load">load</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#store">store</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#export">export</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">mevis</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+        
+          <li><a href="index.html">API documentation</a> &raquo;</li>
+        
+      <li>mevis</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="../../_sources/rst/api/package.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="module-mevis">
+<span id="mevis"></span><h1>mevis<a class="headerlink" href="#module-mevis" title="Permalink to this headline">¶</a></h1>
+<p>This is the package <a class="reference internal" href="#module-mevis" title="mevis"><code class="xref py py-mod docutils literal notranslate"><span class="pre">mevis</span></code></a>.</p>
+<p>Its main purpose is to provide interactive AtomSpace visualizations
+for the OpenCog project. Beyond that it comes with some inspection,
+filtering, conversion, layouting and I/O capabilities.</p>
+<section id="plot">
+<h2>plot<a class="headerlink" href="#plot" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="mevis.plot">
+<span class="sig-name descname"><span class="pre">plot</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">backend</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'vis'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layout_method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layout_scale_x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layout_scale_y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layout_mirror_x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layout_mirror_y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layout_center_x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">layout_center_y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter_target</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter_context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'atom'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filter_mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'include'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graph_annotated</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graph_directed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_opacity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_border_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_border_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_label_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_label_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_hover</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_click</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_image</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_properties</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_opacity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_label_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_label_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_hover</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_click</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mevis/_internal/plotting.html#plot"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mevis.plot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create a graph visualization of a given AtomSpace, list of Atoms or NetworkX graph.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul>
+<li><p><strong>data</strong> (<em>Atomspace, list of Atoms, NetworkX Graph, NetworkX DiGraph</em>) – The input data that shall be visualized.
+If it is already a NetworkX Graph or NetworkX DiGraph, no conversion,
+layouting and filtering steps are performed, which means that most
+arguments have no effect.</p></li>
+<li><p><strong>backend</strong> (<em>str</em>) – Library used for the graph visualization.</p>
+<p>Possible values:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;d3&quot;</span></code>: Uses <a class="reference external" href="https://d3js.org/">d3.js</a>
+to generate a 2d plot based on the
+<a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/SVG/Element/svg">HTML SVG element</a>,
+which is vector graphics that can be exported as SVG, PNG or JPG.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;vis&quot;</span></code>: Uses <a class="reference external" href="https://visjs.org/">vis.js</a>
+to generate a 2d plot based on the
+<a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API">HTML Canvas element</a>,
+which is raster graphics that can be exported as PNG or JPG.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;three&quot;</span></code>: Uses <a class="reference external" href="https://threejs.org/">three.js</a>
+to generate a 3d plot based on
+<a class="reference external" href="https://developer.mozilla.org/en-US/docs/Web/API/WebGL_API">HTML WebGL element</a>,
+which is raster graphics that can be exported as PNG or JPG.</p></li>
+</ul>
+</li>
+<li><p><strong>filter_[…]</strong> – See documentation of the <a class="reference internal" href="#mevis.filter" title="mevis.filter"><code class="xref py py-func docutils literal notranslate"><span class="pre">filter()</span></code></a> function.</p></li>
+<li><p><strong>graph_[…], node_[…], edge_[…]</strong> – See documentation of the <a class="reference internal" href="#mevis.convert" title="mevis.convert"><code class="xref py py-func docutils literal notranslate"><span class="pre">convert()</span></code></a> function.</p></li>
+<li><p><strong>layout_[…]</strong> – See documentation of the <a class="reference internal" href="#mevis.layout" title="mevis.layout"><code class="xref py py-func docutils literal notranslate"><span class="pre">layout()</span></code></a> function.</p></li>
+<li><p><strong>kwargs</strong> – Other keyword arguments are forwarded to the plotting method.
+See documentation of
+<a class="reference external" href="https://robert-haas.github.io/gravis-docs/">gravis</a>.
+Various aspects of the graph visualizations can be changed interactively
+by a user in the HTML menus, but often it is desirable to set suitable
+initial values, e.g. <code class="docutils literal notranslate"><span class="pre">edge_curvature=0.2</span></code> for curved instead of
+straight edges.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>fig</strong> (<a class="reference external" href="https://robert-haas.github.io/gravis-docs/rst/api/figure.html">Figure</a>) – A figure object from gravis that can be used for displaying or exporting the plot.</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p><strong>Pre-processing steps</strong> can be triggered by providing values for
+the arguments <code class="docutils literal notranslate"><span class="pre">filter_target</span></code> or <code class="docutils literal notranslate"><span class="pre">layout_method</span></code> and modified
+by providing values for arguments like <code class="docutils literal notranslate"><span class="pre">node_color</span></code> and <code class="docutils literal notranslate"><span class="pre">node_size</span></code>.</p>
+<ol class="arabic simple">
+<li><p><strong>Filter</strong>: Reduce the AtomSpace to a list of relevant Atoms.</p></li>
+<li><p><strong>Convert</strong>: Transform the AtomSpace to a NetworkX graph and add annotations
+to its nodes and edges. By providing arguments like <code class="docutils literal notranslate"><span class="pre">node_size</span></code> it is possible
+to translate information such as truth values into visual properties such as
+node size, color or shape.</p></li>
+<li><p><strong>Layout</strong>: Calculate x and y coordinates to better recognize structures
+in the AtomSpace such as hierarchies and clusters.</p></li>
+</ol>
+<p>These steps are implemented by the functions
+<a class="reference internal" href="#mevis.filter" title="mevis.filter"><code class="xref py py-func docutils literal notranslate"><span class="pre">filter()</span></code></a>, <a class="reference internal" href="#mevis.convert" title="mevis.convert"><code class="xref py py-func docutils literal notranslate"><span class="pre">convert()</span></code></a> and <a class="reference internal" href="#mevis.layout" title="mevis.layout"><code class="xref py py-func docutils literal notranslate"><span class="pre">layout()</span></code></a>.
+They are called implicitely by this plotting function with default arguments.
+Alternatively, they can be called explicitly by a user on an AtomSpace
+for finer control. The result can then be fed into this plotting function.</p>
+</div>
+</dd></dl>
+
+</section>
+<section id="inspect">
+<h2>inspect<a class="headerlink" href="#inspect" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="mevis.inspect">
+<span class="sig-name descname"><span class="pre">inspect</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">count_details</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mevis/_internal/inspection.html#inspect"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mevis.inspect" title="Permalink to this definition">¶</a></dt>
+<dd><p>Inspect an AtomSpace or graph by counting elements.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>data</strong> (<em>AtomSpace, list of Atoms, NetworkX Graph, NetworkX DiGraph</em>)</p></li>
+<li><p><strong>count_details</strong> (<em>bool</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, some detailed properties of the AtomSpace or Graph are counted.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><p><strong>counts</strong> (<em>dict</em>) – A dictionary of element/count pairs.</p>
+<ul class="simple">
+<li><p>If AtomSpace or list of Atoms:
+A dictionary that contains counts of Atoms, Nodes, Links
+and another dictionary with counts for each Atom type.</p></li>
+<li><p>If NetworkX Graph or NetworkX DiGraph:
+A dictionary that contains counts of nodes, edges and annotations.</p></li>
+</ul>
+</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="filter">
+<h2>filter<a class="headerlink" href="#filter" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="mevis.filter">
+<span class="sig-name descname"><span class="pre">filter</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">target</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">context</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'atom'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mode</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'include'</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mevis/_internal/filtering.html#filter"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mevis.filter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply a filter to an Atomspace or list of Atoms and return a list of selected Atoms.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul>
+<li><p><strong>data</strong> (<em>Atomspace, list of Atoms</em>) – The given Atomspace or list of Atoms that is filtered and thereby reduced to a
+shorter list of Atoms.</p></li>
+<li><p><strong>target</strong> (<em>str, int, Atom, list, Callable</em>) – The targets that are selected by this filtering function.</p>
+<p>Possible types and their meaning:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">str</span></code>: A string that is matched against <code class="docutils literal notranslate"><span class="pre">.name</span></code> and <code class="docutils literal notranslate"><span class="pre">.type_name</span></code> of each Atom.
+Capitalization is ignored.</p>
+<p>Examples:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">target=&quot;andlink&quot;</span></code> will include all Atoms of type <code class="docutils literal notranslate"><span class="pre">AndLink</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">target=&quot;$1&quot;</span></code> will include all Atoms with name <code class="docutils literal notranslate"><span class="pre">&quot;$1&quot;</span></code>.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">int</span></code>: An OpenCog Atom type that is matched against <code class="docutils literal notranslate"><span class="pre">.type</span></code> of each Atom.</p>
+<p>Examples:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">target=opencog.atomspace.types.OrLink</span></code> selects all Atoms of type <code class="docutils literal notranslate"><span class="pre">OrLink</span></code>.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Atom</span></code>: An Atom that is used as it is.</p>
+<p>Examples:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">target=list(atomspace)[4]</span></code> selects the fifth Atom in the AtomSpace.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">list</span></code>: A list of str, int and/or Atom. The types can be mixed freely.</p>
+<p>Examples:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">target=[&quot;andlink&quot;,</span> <span class="pre">&quot;OrLink&quot;]</span></code> selects all Atoms of type <code class="docutils literal notranslate"><span class="pre">AndLink</span></code> and <code class="docutils literal notranslate"><span class="pre">OrLink</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">target=[&quot;notlink&quot;,</span> <span class="pre">&quot;$1&quot;,</span> <span class="pre">opencog.atomspace.types.OrLink,</span> <span class="pre">list(atomspace)[4]]</span></code>
+selects all Atoms of type <code class="docutils literal notranslate"><span class="pre">NotLink</span></code>, all Atoms with name <code class="docutils literal notranslate"><span class="pre">&quot;$1&quot;</span></code>,
+all Atoms of type <code class="docutils literal notranslate"><span class="pre">OrLink</span></code>, and the fifth Atom in the AtomSpace.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">Callable</span></code>: A function that gets an Atom as input and needs to
+return <code class="docutils literal notranslate"><span class="pre">True</span></code> or <code class="docutils literal notranslate"><span class="pre">False</span></code> to indicate whether the Atom is selected or not.</p>
+<p>Examples:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">target=lambda</span> <span class="pre">atom:</span> <span class="pre">atom.is_link()</span></code> selects all Atoms that are Links</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">target=lambda</span> <span class="pre">atom:</span> <span class="pre">atom.name.startswith(&quot;$&quot;)</span></code> selects all Atoms
+that have a name starting with <code class="docutils literal notranslate"><span class="pre">$</span></code>.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>context</strong> (<em>str, tuple</em>) – The context of the selection of Atoms to which it shall be expanded.</p>
+<p>Possible values:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">atom</span></code>: Only the Atoms specified by <code class="docutils literal notranslate"><span class="pre">target</span></code> are selected.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">in</span></code>: The Atoms specified by <code class="docutils literal notranslate"><span class="pre">target</span></code> and
+all their incoming neighbors are selected.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">out</span></code>: The Atoms specified by <code class="docutils literal notranslate"><span class="pre">target</span></code> and
+all their outgoing neighbors are selected.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">both</span></code>: The Atoms specified by <code class="docutils literal notranslate"><span class="pre">target</span></code> and
+all their incoming and outgoing neighbors are selected.
+This is also known as
+<a class="reference external" href="https://en.wikipedia.org/wiki/Neighbourhood_(graph_theory)">neighborhood</a>
+in graph theory or
+<a class="reference external" href="https://research.library.gsu.edu/c.php?g=916490&amp;p=6612505">egocentric network</a>
+in social network analysis.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">in_tree</span></code>: The Atoms specified by <code class="docutils literal notranslate"><span class="pre">target</span></code> and all their incoming neighbors are
+selected, which is repeated until nothing can be added anymore.
+This is also known as
+<a class="reference external" href="https://en.wikipedia.org/wiki/Arborescence_(graph_theory)">in-tree or anti-arborescence</a>
+in graph theory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">out_tree</span></code>: The Atoms specified by <code class="docutils literal notranslate"><span class="pre">target</span></code> and all their outgoing Atoms are
+selected, which is repeated until nothing can be added anymore.
+This is also known as
+<a class="reference external" href="https://en.wikipedia.org/wiki/Arborescence_(graph_theory)">out-tree or arborescence</a>
+in graph theory.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(context,</span> <span class="pre">size)</span></code>: In the case of <code class="docutils literal notranslate"><span class="pre">in</span></code>, <code class="docutils literal notranslate"><span class="pre">out</span></code> and <code class="docutils literal notranslate"><span class="pre">both</span></code> the context
+can come with a size, which means how often the selected Atoms are expanded in
+the chosen way.</p>
+<p>Examples:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">(&quot;out&quot;,</span> <span class="pre">2)</span></code> means that the selected Atoms are expanded twice by their
+outgoing Atoms, instead of just once when using <code class="docutils literal notranslate"><span class="pre">out</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(&quot;in&quot;,</span> <span class="pre">3)</span></code> means that the selected Atoms are expanded thrice by their
+incoming Atoms, instead of just once when using <code class="docutils literal notranslate"><span class="pre">in</span></code>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">(&quot;both&quot;,</span> <span class="pre">2)</span></code> means that the selected Atoms are expanded twice by their
+incoming and outgoing Atoms, instead of just once when using <code class="docutils literal notranslate"><span class="pre">both</span></code>.
+Note that the result can be and usually is different than the combined
+results from <code class="docutils literal notranslate"><span class="pre">(&quot;in&quot;,</span> <span class="pre">2)</span></code> and <code class="docutils literal notranslate"><span class="pre">(&quot;out&quot;,</span> <span class="pre">2)</span></code>, because adding an ingoing
+neighbor in step 1 and then its outgoing neighbors in step 2 (or vice versa)
+captures more Atoms.</p></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p><strong>mode</strong> (<em>str</em>) – The selection of Atoms can be the result of the filtering, but it is also possible
+to exclude those Atoms and instead return all other ones.</p>
+<p>Possible values:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">include</span></code>: The selection is included in the result.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">exclude</span></code>: The selection is excluded from the result. Everything else is included.</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>atoms</strong> (<em>list of Atoms</em>)</p>
+</dd>
+</dl>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Chaining is possible, which means that the output of a filter application can be used
+as input for another one. This allows to combine different targets, contexts and modes
+by performing a sequence of filtering steps. Example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">mevis</span> <span class="k">as</span> <span class="nn">mv</span>
+
+<span class="n">atomspace</span> <span class="o">=</span> <span class="n">mv</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;moses.scm&#39;</span><span class="p">)</span>
+<span class="n">atoms</span> <span class="o">=</span> <span class="n">mv</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">atomspace</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="s2">&quot;AndLink&quot;</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="s2">&quot;out-tree&quot;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;include&quot;</span><span class="p">)</span>
+<span class="n">atoms</span> <span class="o">=</span> <span class="n">mv</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">atoms</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="s2">&quot;PredicateNode&quot;</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="s2">&quot;atom&quot;</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s2">&quot;exclude&quot;</span><span class="p">)</span>
+<span class="n">mv</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">atoms</span><span class="p">,</span> <span class="s1">&#39;vis&#39;</span><span class="p">,</span> <span class="s1">&#39;dot&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The first line includes Atoms of type <code class="docutils literal notranslate"><span class="pre">AndLink</span></code> and their maximally expanded
+outgoing neighborhood. The second line excludes Atoms of type <code class="docutils literal notranslate"><span class="pre">PredicateNode</span></code>
+from the previous result.</p>
+</div>
+</dd></dl>
+
+</section>
+<section id="convert">
+<h2>convert<a class="headerlink" href="#convert" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="mevis.convert">
+<span class="sig-name descname"><span class="pre">convert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graph_annotated</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">graph_directed</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_opacity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_shape</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_border_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_border_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_label_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_label_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_hover</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_click</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_image</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">node_properties</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_label</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_opacity</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_label_color</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_label_size</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_hover</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">edge_click</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mevis/_internal/conversion.html#convert"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mevis.convert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Convert an Atomspace or list of Atoms to a NetworkX graph with annotations.</p>
+<p>Several arguments accept a Callable.</p>
+<ul class="simple">
+<li><p>In case of node annotations, the Callable gets an Atom as input,
+which the node represents in the graph.
+The Callable needs to return one of the other types accepted by the argument,
+e.g. <code class="docutils literal notranslate"><span class="pre">str</span></code> or <code class="docutils literal notranslate"><span class="pre">int</span></code>/<code class="docutils literal notranslate"><span class="pre">float</span></code>.</p></li>
+<li><p>In case of edge annotations, the Callable gets two Atoms as input,
+which the edge connects in the graph.
+The Callable needs to return one of the other types accepted by the argument,
+e.g. <code class="docutils literal notranslate"><span class="pre">str</span></code> or <code class="docutils literal notranslate"><span class="pre">int</span></code>/<code class="docutils literal notranslate"><span class="pre">float</span></code>.</p></li>
+</ul>
+<p>Several arguments accept a color, which can be in following formats:</p>
+<ul class="simple">
+<li><p>Name: <code class="docutils literal notranslate"><span class="pre">&quot;black&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;red&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;green&quot;</span></code>, …</p></li>
+<li><p>Color code</p>
+<ul>
+<li><p>6 digit hex RGB code: <code class="docutils literal notranslate"><span class="pre">&quot;#05ac05&quot;</span></code></p></li>
+<li><p>3 digit hex RGB code: <code class="docutils literal notranslate"><span class="pre">&quot;#0a0&quot;</span></code> (equivalent to <code class="docutils literal notranslate"><span class="pre">&quot;#00aa00&quot;</span></code>)</p></li>
+</ul>
+</li>
+</ul>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul>
+<li><p><strong>data</strong> (<em>Atomspace, list of Atoms</em>) – Input that gets converted to a graph.</p></li>
+<li><p><strong>graph_annotated</strong> (<em>bool</em>) – If <code class="docutils literal notranslate"><span class="pre">False</span></code>, no annotations are added to the graph. This could be used for
+converting large AtomSpaces quickly to graphs that use less RAM and can
+be exported to smaller files (e.g. also compressed as gml.gz) for inspection
+with other tools.</p></li>
+<li><p><strong>graph_directed</strong> (<em>bool</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, a NetworkX DiGraph is created. If <code class="docutils literal notranslate"><span class="pre">False</span></code>, a NetworkX Graph is created.</p></li>
+<li><p><strong>node_label</strong> (<em>str, Callable</em>) – Set a label for each node, which is shown as text below it.</p></li>
+<li><p><strong>node_color</strong> (<em>str, Callable</em>) – Set a color for each node, which becomes the fill color of its shape.</p></li>
+<li><p><strong>node_opacity</strong> (<em>float between 0.0 and 1.0</em>) – Set an opacity for each node, which becomes the opacity of its shape.</p>
+<p>Caution: This is only supported by d3.</p>
+</li>
+<li><p><strong>node_size</strong> (<em>int, float, Callable</em>) – Set a size for each node, which becomes the height and width of its shape.</p></li>
+<li><p><strong>node_shape</strong> (<em>str, Callable</em>) – Set a shape for each node, which is some geometrical form that has the
+node coordinates in its center.</p>
+<p>Possible values: <code class="docutils literal notranslate"><span class="pre">&quot;circle&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;rectangle&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;hexagon&quot;</span></code></p>
+</li>
+<li><p><strong>node_border_color</strong> (<em>str, Callable</em>) – Set a border color for each node, which influences the border drawn around its shape.</p></li>
+<li><p><strong>node_border_size</strong> (<em>int, float, Callable</em>) – Set a border size for each node, which influences the border drawn around its shape.</p></li>
+<li><p><strong>node_label_color</strong> (<em>str, Callable</em>) – Set a label color for each node, which determines the font color
+of the text below the node.</p></li>
+<li><p><strong>node_label_size</strong> (<em>int, float, Callable</em>) – Set a label size for each node, which determines the font size
+of the text below the node.</p></li>
+<li><p><strong>node_hover</strong> (<em>str, Callable</em>) – Set a hover text for each node, which shows up besides the mouse cursor
+when hovering over a node.</p></li>
+<li><p><strong>node_click</strong> (<em>str, Callable</em>) – Set a click text for each node, which shows up in a div element below the plot
+when clicking on a node and can easily be copied and pasted.</p></li>
+<li><p><strong>node_image</strong> (<em>str, Callable</em>) – Set an image for each node, which appears within its shape.</p>
+<p>Possible values:</p>
+<ul class="simple">
+<li><p>URL pointing to an image</p></li>
+<li><p>Data URL encoding the image</p></li>
+</ul>
+</li>
+<li><p><strong>node_properties</strong> (<em>str, dict, Callable</em>) – Set additional properties for each node, which may not immediately be translated
+into a visual element, but can be chosen in the data selection menu in the
+interactive HTML visualizations to map them on some plot element.
+These properties also appear when exporting a graph to a file in a format
+such as GML and may be recognized by external visualization tools.
+Note that a Callable needs to return a dict in this case, and each key becomes
+a property, which is equivalent to the other properties such as node_size and
+node_color.</p>
+<p>Special cases:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">node_properties=&quot;tv&quot;</span></code> is a shortcut for using a function that returns
+<code class="docutils literal notranslate"><span class="pre">{&quot;mean&quot;:</span> <span class="pre">atom.tv.mean,</span> <span class="pre">&quot;confidence&quot;:</span> <span class="pre">atom.tv.confidence}</span></code></p></li>
+<li><p>Keys <code class="docutils literal notranslate"><span class="pre">&quot;x&quot;</span></code>, <code class="docutils literal notranslate"><span class="pre">&quot;y&quot;</span></code> and <code class="docutils literal notranslate"><span class="pre">&quot;z&quot;</span></code> properties are translated into node coordinates.</p></li>
+</ul>
+<p>Examples:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">dict(x=0.0)</span></code>: This fixes the x coordinate of each node to 0.0, so that the
+JavaScript layout algorithm does not influence it, but the nodes remain
+free to move in the y and z directions.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lambda</span> <span class="pre">atom:</span> <span class="pre">dict(x=2.0)</span> <span class="pre">if</span> <span class="pre">atom.is_node()</span> <span class="pre">else</span> <span class="pre">None</span></code>:
+This fixes the x coordinate of each Atom of type Node to 2.0
+but allows each Atom of type Link to move freely.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lambda</span> <span class="pre">atom:</span> <span class="pre">dict(y=-len(atom.out)*100)</span> <span class="pre">if</span> <span class="pre">atom.is_link()</span> <span class="pre">else</span> <span class="pre">dict(y=0)</span></code>
+This fixes the y coordinates of Atoms at different heights. Atoms of type Node
+are put at the bottom and Atoms of type Link are ordered by the number of their
+outgoing edges. The results is a hierarchical visualization that has some
+similarity with the “dot” layout.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">lambda</span> <span class="pre">atom:</span> <span class="pre">dict(x=-100)</span> <span class="pre">if</span> <span class="pre">atom.is_node()</span> <span class="pre">else</span> <span class="pre">dict(x=100)</span></code>:
+This fixes the x coordinate of Node Atoms at -100 and of Link Atoms at 100.
+The results is a visualization with two lines of nodes that has some
+similarity with the “bipartite” layout.</p></li>
+</ul>
+</li>
+<li><p><strong>edge_label</strong> (<em>str, Callable</em>) – Set a label for each edge, which becomes the text plotted in the middle of the edge.</p></li>
+<li><p><strong>edge_color</strong> (<em>str, Callable</em>) – Set a color for each edge, which becomes the color of the line representing the edge.</p></li>
+<li><p><strong>edge_opacity</strong> (<em>int, float, Callable</em>) – Set an opacity for each edge, which allows to make it transparent to some degree.</p></li>
+<li><p><strong>edge_size</strong> (<em>int, float, Callable</em>) – Set a size for each edge, which becomes the width of the line representing the edge.</p></li>
+<li><p><strong>edge_label_color</strong> (<em>str, Callable</em>) – Set a color for each edge label, which becomes the color of the text in the midpoint
+of the edge.</p></li>
+<li><p><strong>edge_label_size</strong> (<em>int, float, Callable</em>) – Set a size for each edge label, which becomes the size of the text in the midpoint
+of the edge.</p></li>
+<li><p><strong>edge_hover</strong> (<em>str, Callable</em>)</p></li>
+<li><p><strong>edge_click</strong> (<em>str, Callable</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>graph</strong> (<em>NetworkX Graph or DiGraph</em>) – Whether an undirected or directed graph is created depends on the argument “directed”.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="layout">
+<h2>layout<a class="headerlink" href="#layout" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="mevis.layout">
+<span class="sig-name descname"><span class="pre">layout</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">data</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'neato'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale_x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">scale_y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">1.0</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mirror_x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">mirror_y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center_x</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">center_y</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mevis/_internal/layouting.html#layout"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mevis.layout" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate a layout for a given NetworkX graph with a chosen method.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul>
+<li><p><strong>data</strong> (<em>NetworkX Graph, NetworkX DiGraph, AtomSpace, list of Atoms</em>) – Input that gets augmented by a layout in form of x and y coordinates for each node.</p>
+<p>If the data is an AtomSpace or list of Atoms, it is first converted to a
+NetworkX graph by implicitely calling <a class="reference internal" href="#mevis.convert" title="mevis.convert"><code class="xref py py-func docutils literal notranslate"><span class="pre">convert()</span></code></a> with default arguments.
+Alternatively, it can also be called explicitly by a user on an AtomSpace
+for finer control. The result can then be fed into this layout function.</p>
+</li>
+<li><p><strong>method</strong> (<em>str</em>) – Layout method for calculating node coordinates, e.g. a Graphviz layout engine.</p>
+<p>Possible values:</p>
+<ul>
+<li><p>Graphviz layouts</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;dot&quot;</span></code>: hierarchical layout for directed graphs,
+see <a class="reference external" href="https://graphviz.org/docs/layouts/dot/">dot</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;neato&quot;</span></code>: spring model layout for up to 100 nodes,
+minimizes a global energy function,
+see <a class="reference external" href="https://graphviz.org/docs/layouts/neato/">neato</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;twopi&quot;</span></code>: radial layout placing nodes on concentric circles depending
+on their distance from a root node,
+see <a class="reference external" href="https://graphviz.org/docs/layouts/twopi/">twopi</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;circo&quot;</span></code>: circular layout,
+see <a class="reference external" href="https://graphviz.org/docs/layouts/circo/">circo</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;fdp&quot;</span></code>: spring model layout for larger graphs,
+reduces forces with the Fruchterman-Reingold heuristic,
+see <a class="reference external" href="https://graphviz.org/docs/layouts/fdp/">fdp</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;sfdp&quot;</span></code>: multiscale version of <code class="docutils literal notranslate"><span class="pre">fdp</span></code> for large graphs
+see <a class="reference external" href="https://graphviz.org/docs/layouts/sfdp/">sfdp</a></p></li>
+</ul>
+</div></blockquote>
+</li>
+<li><p>NetworkX layouts</p>
+<blockquote>
+<div><ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">bipartite</span></code>: nodes in two straight lines,
+see <a class="reference external" href="https://networkx.org/documentation/stable/reference/generated/networkx.drawing.layout.bipartite_layout.html">bipartite_layout</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">circular</span></code>: nodes on a circle,
+see <a class="reference external" href="https://networkx.org/documentation/stable/reference/generated/networkx.drawing.layout.circular_layout.html">circular_layout</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">kamada_kawai</span></code>: using Kamada-Kawai path-length cost-function,
+see <a class="reference external" href="https://networkx.org/documentation/stable/reference/generated/networkx.drawing.layout.kamada_kawai_layout.html">kamada_kawai_layout</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">planar</span></code>: nodes without edge intersections, fails if the graph is not planar,
+see <a class="reference external" href="https://networkx.org/documentation/stable/reference/generated/networkx.drawing.layout.planar_layout.html">planar_layout</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">random</span></code>: nodes uniformly at random in the unit square,
+see <a class="reference external" href="https://networkx.org/documentation/stable/reference/generated/networkx.drawing.layout.random_layout.html">random_layout</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">shell</span></code>: nodes in concentric circles,
+best with <code class="docutils literal notranslate"><span class="pre">nlist</span></code> defining list of nodes for each shell,
+see <a class="reference external" href="https://networkx.org/documentation/stable/reference/generated/networkx.drawing.layout.shell_layout.html">shell_layout</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">spectral</span></code>: using the eigenvectors of the graph Laplacian,
+see <a class="reference external" href="https://networkx.org/documentation/stable/reference/generated/networkx.drawing.layout.spectral_layout.html">spectral_layout</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">spiral</span></code>: nodes in a spiral,
+see <a class="reference external" href="https://networkx.org/documentation/stable/reference/generated/networkx.drawing.layout.spiral_layout.html">spiral_layout</a></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">spring</span></code>: using Fruchterman-Reingold force-directed algorithm,
+see <a class="reference external" href="https://networkx.org/documentation/stable/reference/generated/networkx.drawing.layout.spring_layout.html">spring_layout</a></p></li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</li>
+<li><p><strong>scale_x</strong> (<em>int, float</em>) – A number to contract or stretch the layout along the x coordinate.</p></li>
+<li><p><strong>scale_y</strong> (<em>int, float</em>) – A number to contract or stretch the layout along the y coordinate.</p></li>
+<li><p><strong>mirror_x</strong> (<em>bool</em>) – if <code class="docutils literal notranslate"><span class="pre">True</span></code>, the x coordinates are inverted.</p></li>
+<li><p><strong>mirror_y</strong> (<em>bool</em>) – if <code class="docutils literal notranslate"><span class="pre">True</span></code>, the y coordinates are inverted.</p></li>
+<li><p><strong>center_x</strong> (<em>bool</em>) – if <code class="docutils literal notranslate"><span class="pre">True</span></code>, the x coordinates are shifted so the extreme values have equal distance to 0.</p></li>
+<li><p><strong>center_y</strong> (<em>bool</em>) – if <code class="docutils literal notranslate"><span class="pre">True</span></code>, the y coordinates are shifted so the extreme values have equal distance to 0.</p></li>
+<li><p><strong>kwargs</strong> – Other keyword arguments are forwarded to the layout method.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p><strong>graph</strong> (<em>NetworkX Graph or NetworkX DiGraph</em>)</p>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><p>Graphviz documentation:
+<a class="reference external" href="https://graphviz.org/docs/layouts/">layouts</a></p></li>
+<li><p>NetworkX documentation:
+<a class="reference external" href="https://networkx.org/documentation/stable/reference/generated/networkx.drawing.nx_agraph.graphviz_layout.html">graphviz_layout</a></p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Graphviz layouts are influenced by graph properties, e.g. whether a graph
+is directed or undirected, or whether the shapes of nodes are circle or rectangle.</p>
+</div>
+</dd></dl>
+
+</section>
+<section id="create">
+<h2>create<a class="headerlink" href="#create" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="mevis.create">
+<span class="sig-name descname"><span class="pre">create</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">set_as_default</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mevis/_internal/io.html#create"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mevis.create" title="Permalink to this definition">¶</a></dt>
+<dd><p>Create an empty AtomSpace and set it as default.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>set_as_default</strong> (<em>bool</em>) – If <code class="docutils literal notranslate"><span class="pre">True</span></code>, the newly created AtomSpace is set as default in OpenCog.</p>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><p>OpenCog Wiki: <a class="reference external" href="https://wiki.opencog.org/w/Python">Python</a></p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>atomspace</strong> (<em>AtomSpace</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="load">
+<h2>load<a class="headerlink" href="#load" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="mevis.load">
+<span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'primitive'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mevis/_internal/io.html#load"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mevis.load" title="Permalink to this definition">¶</a></dt>
+<dd><p>Load an Atomspace from a given filepath with a chosen method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filepath</strong> (<em>str</em>) – Path of a text file that contains Atomese code.</p></li>
+<li><p><strong>method</strong> (<em>str</em>) – Possible values:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;basic&quot;</span></code>: uses Scheme code <code class="docutils literal notranslate"><span class="pre">(load</span> <span class="pre">&quot;data.scm&quot;)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;primitive&quot;</span></code>: uses Scheme code <code class="docutils literal notranslate"><span class="pre">(primitive-load</span> <span class="pre">&quot;data.scm&quot;)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;fast&quot;</span></code>: uses Scheme code <code class="docutils literal notranslate"><span class="pre">(load-file</span> <span class="pre">&quot;data.scm&quot;)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">&quot;python&quot;</span></code>: uses Python function <code class="docutils literal notranslate"><span class="pre">opencog.utilities.load_file</span></code></p></li>
+</ul>
+</li>
+<li><p><strong>verbose</strong> (<em>bool</em>) – if <code class="docutils literal notranslate"><span class="pre">True</span></code>, a short message is printed about the AtomSpace that was loaded.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><p>AtomSpace example: <a class="reference external" href="https://github.com/opencog/atomspace/blob/master/examples/atomspace/persist-file.scm">persist-file.scm</a></p></li>
+</ul>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p><strong>atomspace</strong> (<em>AtomSpace</em>)</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="store">
+<h2>store<a class="headerlink" href="#store" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="mevis.store">
+<span class="sig-name descname"><span class="pre">store</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">atomspace</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">method</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">'basic'</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">verbose</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mevis/_internal/io.html#store"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mevis.store" title="Permalink to this definition">¶</a></dt>
+<dd><p>Store an Atomspace to a given filepath with a chosen method.</p>
+<dl class="field-list">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul>
+<li><p><strong>filepath</strong> (<em>str</em>) – Path of a text file that contains Atomese code.</p></li>
+<li><p><strong>method</strong> (<em>str</em>) – Possible values:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">basic</span></code>: uses Scheme code <code class="docutils literal notranslate"><span class="pre">(export-all-atoms</span> <span class="pre">&quot;data.scm&quot;)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">file-storage-node</span></code>: uses Scheme code <code class="docutils literal notranslate"><span class="pre">(define</span> <span class="pre">fsn</span> <span class="pre">(FileStorageNode</span> <span class="pre">&quot;data.scm&quot;))</span></code></p>
+<p>Caution: This command adds a new <code class="docutils literal notranslate"><span class="pre">FileStorageNode</span></code> to the AtomSpace,
+which will also appear in the exported file.</p>
+</li>
+</ul>
+</li>
+<li><p><strong>verbose</strong> (<em>bool</em>) – if <code class="docutils literal notranslate"><span class="pre">True</span></code>, a short message is printed about the AtomSpace that was loaded.</p></li>
+<li><p><strong>overwrite</strong> (<em>bool</em>) – If False, a <code class="docutils literal notranslate"><span class="pre">FileExistsError</span></code> will be raised in case there is already a
+file with the given filepath. if <code class="docutils literal notranslate"><span class="pre">True</span></code>, the file will be overwritten.</p></li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><p>AtomSpace example: <a class="reference external" href="https://github.com/opencog/atomspace/blob/master/examples/atomspace/persist-file.scm">persist-file.scm</a></p></li>
+<li><p>OpenCog Wiki: <a class="reference external" href="https://wiki.opencog.org/w/StorageNode">StorageNode</a></p></li>
+</ul>
+</dd></dl>
+
+</section>
+<section id="export">
+<h2>export<a class="headerlink" href="#export" title="Permalink to this headline">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="mevis.export">
+<span class="sig-name descname"><span class="pre">export</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">graph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">filepath</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">overwrite</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/mevis/_internal/io.html#export"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#mevis.export" title="Permalink to this definition">¶</a></dt>
+<dd><p>Export a NetworkX graph in a chosen format.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>graph</strong> (<em>NetworkX Graph, NetworkX DiGraph</em>)</p></li>
+<li><p><strong>filepath</strong> (<em>str</em>) – Possible file extensions:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">gml</span></code>: Export the graph as
+<a class="reference external" href="https://en.wikipedia.org/wiki/Graph_Modelling_Language">Graph Modeling Language (GML)</a> file.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gml.gz</span></code>: Export the graph as GML file compressed with
+<a class="reference external" href="https://en.wikipedia.org/wiki/Gzip">gzip</a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">gml.bz2</span></code>: Export the graph as GML file compressed with
+<a class="reference external" href="https://en.wikipedia.org/wiki/Bzip2">bzip2</a>. It takes longer than gzip
+but produces a bit smaller files.</p></li>
+</ul>
+</li>
+</ul>
+</dd>
+</dl>
+<p class="rubric">References</p>
+<ul class="simple">
+<li><p>NetworkX documentation: <a class="reference external" href="https://networkx.org/documentation/stable/reference/readwrite/generated/networkx.readwrite.gml.write_gml.html">networkx.readwrite.gml.write_gml</a></p></li>
+</ul>
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="index.html" class="btn btn-neutral float-left" title="API documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Robert Haas (Vienna, Austria).
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

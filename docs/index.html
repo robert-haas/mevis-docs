@@ -1,0 +1,447 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>mevis &mdash; mevis 0.1.0 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/js/require.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Package references" href="rst/package_references.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="#">
+          
+
+          
+            
+            <img src="_static/mevis.svg" class="logo" alt="Logo"/>
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <ul>
+<li class="toctree-l1"><a class="reference internal" href="rst/package_references.html">Package references</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rst/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rst/examples/index.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rst/api/index.html">API documentation</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="#">mevis</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="#" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>mevis</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/index.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  
+<style>
+/* CSS overrides for sphinx_rtd_theme */
+
+/* 24px margin */
+.nbinput.nblast.container,
+.nboutput.nblast.container {
+    margin-bottom: 19px;  /* padding has already 5px */
+}
+
+/* ... except between code cells! */
+.nblast.container + .nbinput.container {
+    margin-top: -19px;
+}
+
+.admonition > p:before {
+    margin-right: 4px;  /* make room for the exclamation icon */
+}
+
+/* Fix math alignment, see https://github.com/rtfd/sphinx_rtd_theme/pull/686 */
+.math {
+    text-align: unset;
+}
+</style>
+<section id="mevis">
+<h1>mevis<a class="headerlink" href="#mevis" title="Permalink to this headline">¶</a></h1>
+<p>Welcome! You have found the documentation of the Python 3 package
+<a class="reference internal" href="rst/package_references.html"><span class="doc">mevis</span></a>.</p>
+<section id="what-is-this-package">
+<h2>What is this package?<a class="headerlink" href="#what-is-this-package" title="Permalink to this headline">¶</a></h2>
+<p>Its name stands for metagraph visualization and its purpose is to support the
+<a class="reference external" href="https://opencog.org/">OpenCog project</a>
+with some additional filtering, conversion, layouting and plotting capabilities.
+OpenCog uses a knowledge representation called
+<a class="reference external" href="https://wiki.opencog.org/w/AtomSpace">AtomSpace</a>, which is
+named after
+<a class="reference external" href="https://en.wikipedia.org/wiki/Atomic_formula">atomic formulae</a>
+in logic. In mathematical terms an AtomSpace is a generalized hypergraph, also referred
+to as metagraph. The following lists some relationships between graphs, hypergraphs
+and metagraphs that allow AtomSpaces to be transformed to graphs and then plotted
+with existing graph visualization methods such as those provided by
+<a class="reference external" href="https://robert-haas.github.io/gravis-docs/">gravis</a>, which this package builds upon.</p>
+<ul class="simple">
+<li><p>A <a class="reference external" href="https://en.wikipedia.org/wiki/Graph_(discrete_mathematics)">graph</a>
+consists of vertices and edges, also known as nodes and links.
+Each edge can connect exactly two vertices.</p></li>
+<li><p>A <a class="reference external" href="https://en.wikipedia.org/wiki/Hypergraph">hypergraph</a>
+consists of vertices and generalized edges or hyperedges.
+Each hyperedge can connect an arbitrary number of vertices.</p></li>
+<li><p>A <a class="reference external" href="https://arxiv.org/abs/2102.10581">metagraph</a>
+consists of vertices and generalized hyperedges. Each generalized hyperedge
+can connect an arbitrary number of vertices but may also point to
+other edges and by transitivity to entire subgraphs.</p></li>
+<li><p>A hypergraph can be converted to an equivalent
+<a class="reference external" href="https://en.wikipedia.org/wiki/Bipartite_graph">bipartite graph</a>,
+which is a graph with two disjoint and independent sets of vertices,
+one representing the original vertices and the other representing the hyperedges.</p></li>
+<li><p>A metagraph can be converted in a similar fashion, but the resulting graph
+is not bipartite, because the two disjoint sets of vertices are not
+<a class="reference external" href="https://en.wikipedia.org/wiki/Independent_set_(graph_theory)">independent</a>,
+since edges may connect vertices of the same kind.</p></li>
+</ul>
+<p>OpenCog uses a metagraph to enable the integration of various data sources
+into one knowledge representation. This allows different machine learning and
+reasoning algorithms to operate together on a shared ground, with the aim to
+overcome their individual bottlenecks by cooperation and achievement of
+<a class="reference external" href="https://arxiv.org/abs/1703.04361">cognitive synergy</a>.
+For further background information, there are
+accessible explanations of these concepts in interviews with
+<a class="reference external" href="https://www.goertzel.org">Ben Goertzel</a>
+on the
+<a class="reference external" href="https://www.youtube.com/watch?v=OpSmCKe27WE&amp;t=5872s">Lex Fridman podcast</a>
+and
+<a class="reference external" href="https://youtu.be/-VKF1lJhspg?t=2725">Towards Data Science podcast</a>,
+as well as an in-depth
+<a class="reference external" href="https://wiki.opencog.org/wikihome/images/c/cc/Ram-cpu.pdf">article</a>
+by
+<a class="reference external" href="https://linas.org/">Linas Vepstas</a>
+that motivates the use of a metagraph representation in detail.
+Beyond that, there are numerous articles on the
+<a class="reference external" href="https://wiki.opencog.org">OpenCog Wiki</a>
+and academic publications by
+<a class="reference external" href="https://arxiv.org/search/cs?searchtype=author&amp;query=Goertzel%2C+B">Ben Goertzel</a>,
+<a class="reference external" href="https://arxiv.org/search/?searchtype=author&amp;query=Vepstas%2C+L">Linas Vepstas</a>
+and their colleagues. There are also recorded talks that were given at
+<a class="reference external" href="https://opencog.org/2020/07/virtual-opencogcon-july-15-16/">OpenCogCon</a>
+and various
+<a class="reference external" href="https://agi-conference.org/">AGI conferences</a>.</p>
+</section>
+<section id="how-can-it-be-used">
+<h2>How can it be used?<a class="headerlink" href="#how-can-it-be-used" title="Permalink to this headline">¶</a></h2>
+<p>To get a first impression of the package in action, here is a small code example.
+More comprehensive
+<a class="reference internal" href="rst/examples/index.html"><span class="doc">examples</span></a>
+are available on separate pages.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">mevis</span> <span class="k">as</span> <span class="nn">mv</span>
+
+<span class="n">atomspace</span> <span class="o">=</span> <span class="n">mv</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;moses.scm&#39;</span><span class="p">)</span>
+<span class="n">mv</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">atomspace</span><span class="p">,</span> <span class="s1">&#39;vis&#39;</span><span class="p">,</span> <span class="s1">&#39;dot&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">export_html</span><span class="p">(</span><span class="s1">&#39;moses_vis.html&#39;</span><span class="p">)</span>
+<span class="n">mv</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">atomspace</span><span class="p">,</span> <span class="s1">&#39;three&#39;</span><span class="p">,</span> <span class="s1">&#39;neato&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">export_html</span><span class="p">(</span><span class="s1">&#39;moses_three.html&#39;</span><span class="p">)</span>
+<span class="n">mv</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">atomspace</span><span class="p">,</span> <span class="s1">&#39;d3&#39;</span><span class="p">,</span> <span class="s1">&#39;bipartite&#39;</span><span class="p">,</span> <span class="n">edge_curvature</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span><span class="o">.</span><span class="n">export_html</span><span class="p">(</span><span class="s1">&#39;moses_d3.html&#39;</span><span class="p">)</span>
+
+<span class="n">atomspace</span> <span class="o">=</span> <span class="n">mv</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="s1">&#39;rocca.scm&#39;</span><span class="p">)</span>
+<span class="n">atoms</span> <span class="o">=</span> <span class="n">mv</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">atomspace</span><span class="p">,</span> <span class="n">target</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;SLink&#39;</span><span class="p">,</span> <span class="s1">&#39;MemberLink&#39;</span><span class="p">],</span> <span class="n">mode</span><span class="o">=</span><span class="s1">&#39;exclude&#39;</span><span class="p">)</span>
+<span class="n">graph</span> <span class="o">=</span> <span class="n">mv</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">atoms</span><span class="p">,</span> <span class="n">node_size</span><span class="o">=</span><span class="k">lambda</span> <span class="n">atom</span><span class="p">:</span> <span class="mi">30</span> <span class="k">if</span> <span class="n">atom</span><span class="o">.</span><span class="n">type_name</span> <span class="o">==</span> <span class="s1">&#39;SchemaNode&#39;</span> <span class="k">else</span> <span class="mi">8</span><span class="p">)</span>
+<span class="n">graph</span> <span class="o">=</span> <span class="n">mv</span><span class="o">.</span><span class="n">layout</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="s1">&#39;twopi&#39;</span><span class="p">,</span> <span class="n">scale_x</span><span class="o">=</span><span class="mf">2.0</span><span class="p">,</span> <span class="n">scale_y</span><span class="o">=</span><span class="mf">2.0</span><span class="p">)</span>
+<span class="n">fig</span> <span class="o">=</span> <span class="n">mv</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">graph</span><span class="p">,</span> <span class="s1">&#39;vis&#39;</span><span class="p">)</span>
+<span class="n">fig</span><span class="o">.</span><span class="n">export_html</span><span class="p">(</span><span class="s1">&#39;rocca_vis.html&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p><strong>Results</strong>: This script generates the files
+<a class="reference external" href="_static/media/moses_vis.html">moses_vis.html</a>,
+<a class="reference external" href="_static/media/moses_three.html">moses_three.html</a>,
+<a class="reference external" href="_static/media/moses_d3.html">moses_d3.html</a> and
+<a class="reference external" href="_static/media/rocca_vis.html">rocca_vis.html</a>.
+These are self-contained HTML files, which means that they render without
+loading any external resources and can be shared easily.
+The package also allows to embed visualizations directly into
+<a class="reference external" href="https://jupyter.org">Jupyter notebooks</a>
+or open them in a webbrowser window instead of creating standalone HTML files.</p>
+<p><strong>Interpretation</strong>: An AtomSpace consists of Atoms, which can be divided
+into Nodes and Links. They are represented in this graph visualization by
+red and black nodes, respectively.
+Link-to-Node connections are represented by red edges and Link-to-Link
+connections by black edges. Hovering over a node shows its
+<a class="reference external" href="https://wiki.opencog.org/w/Atomese">Atomese</a>
+code.</p>
+</section>
+<section id="why-is-it-relevant">
+<h2>Why is it relevant?<a class="headerlink" href="#why-is-it-relevant" title="Permalink to this headline">¶</a></h2>
+<p>During the development of OpenCog different
+<a class="reference external" href="https://wiki.opencog.org/w/Atomspace_Visualization">requirements for AtomSpace visualizations</a>
+have appeared and at least
+<a class="reference external" href="https://groups.google.com/g/opencog/c/pistqEX-5HI">eight visualization attempts</a>
+were created to meet some of them, but most have become obsolete by now.
+This package is yet another attempt to fulfill some requirements and be of help
+in certain situations described below. Its tight integration with Jupyter notebooks
+is perhaps its most distinguishing feature in comparison to other approaches.</p>
+</section>
+<section id="when-should-it-be-used">
+<h2>When should it be used?<a class="headerlink" href="#when-should-it-be-used" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong>Small graphs in Jupyter notebooks</strong>:
+mevis is most useful for quick and interactive
+explorations of AtomSpaces below 1000 Atoms in Jupyter notebooks.
+Larger AtomSpaces can also be explored with some patience during rendering,
+but better by filtering them first so that the number of remaining Atoms
+is in a lower range.
+Notebooks can be exported as HTML files and shared with others,
+because the visualizations do not depend on external resources such
+as local files.</p></li>
+<li><p><strong>Small graphs in HTML files or as HTML text</strong>:
+mevis can export plots as HTML files, which can also be shared with others,
+e.g. by embedding them into static websites such as this documentation.
+Another option is to read the HTML text of a plot and serve it
+as response to HTTP requests in a web app (e.g. with
+<a class="reference external" href="https://flask.palletsprojects.com">Flask</a>
+or
+<a class="reference external" href="https://www.djangoproject.com/">Django</a>).</p></li>
+<li><p><strong>Large graphs in external programs</strong>:
+mevis can convert AtomSpaces to annotated
+<a class="reference external" href="https://networkx.org/">NetworkX</a>
+graphs and export them
+in
+<a class="reference external" href="https://en.wikipedia.org/wiki/Graph_Modelling_Language">GML format</a>
+or better in its compressed variants. This also works well with large AtomSpaces.
+The resulting <code class="docutils literal notranslate"><span class="pre">.gml</span></code>, <code class="docutils literal notranslate"><span class="pre">.gml.gz</span></code> or <code class="docutils literal notranslate"><span class="pre">.gml.bz2</span></code> files can be read
+directly by external programs such as
+<a class="reference external" href="https://cytoscape.org/">Cytoscape</a>,
+<a class="reference external" href="https://gephi.org/">Gephi</a>
+or
+<a class="reference external" href="https://tulip.labri.fr/site/">Tulip</a>,
+which are able to visualize very large graphs, though layout calculation
+may take quite a while.</p></li>
+<li><p><strong>Command line interface</strong>:
+After installing this Python package with pip, the command <code class="docutils literal notranslate"><span class="pre">mevis</span></code> should be
+available in the shell, which offers <a class="reference internal" href="code/examples/cli.html"><span class="doc">usage via CLI</span></a>.
+It allows to load an AtomSpace from a <code class="docutils literal notranslate"><span class="pre">.scm</span></code> file, optionally filter it,
+convert it to a graph, optionally calculate a layout, and finally export
+the annotated graph to a GML file or create a plot of it, which can be
+displayed in a browser or exported to a HTML file. Thus the CLI allows
+to use most features of the package without having to write any Python code.</p></li>
+</ul>
+</section>
+<section id="who-can-benefit-from-it">
+<h2>Who can benefit from it?<a class="headerlink" href="#who-can-benefit-from-it" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p><strong>OpenCog developers:</strong>
+Quick visual feedback can help when new data sources are integrated into a single
+AtomSpace or when algorithms operating on AtomSpaces are developed and tested.</p></li>
+<li><p><strong>OpenCog users:</strong>
+Simple visualization of AtomSpaces can help new arrivals but also experienced users
+by providing broad overviews or filtered perspectives of what is going on in a metagraph.</p></li>
+<li><p><strong>General audience:</strong>
+OpenCog concepts such as knowledge representation with metagraphs,
+expression of both data and programs in Atomese,
+cognitive synergy of algorithms that can act on the same data,
+and similar ideas can be explained more vividly with accompanying visualizations
+and thereby might become more palpable to a diverse audience.</p></li>
+</ul>
+</section>
+<section id="how-can-you-get-started">
+<h2>How can you get started?<a class="headerlink" href="#how-can-you-get-started" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li><p>The <a class="reference internal" href="rst/installation.html"><span class="doc">installation guide</span></a>
+explains how to download and install the package and its dependencies.</p></li>
+<li><p>The <a class="reference internal" href="rst/examples/index.html"><span class="doc">examples</span></a>
+provide an easy way to get started with using the package.</p></li>
+<li><p>The <a class="reference internal" href="rst/api/index.html"><span class="doc">API documentation</span></a> is the single source of truth
+for all details about each available function.</p></li>
+</ul>
+</section>
+<section id="where-is-everything-located">
+<h2>Where is everything located?<a class="headerlink" href="#where-is-everything-located" title="Permalink to this headline">¶</a></h2>
+<p>The <a class="reference internal" href="rst/package_references.html"><span class="doc">package reference page</span></a>
+contains links to all parts of this project, including
+source code (with tests, docs, examples),
+packaged code (for distribution via PyPI and pip)
+and this documentation website.</p>
+</section>
+<section id="table-of-website-contents">
+<h2>Table of website contents<a class="headerlink" href="#table-of-website-contents" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="rst/package_references.html">Package references</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rst/installation.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rst/examples/index.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rst/api/index.html">API documentation</a></li>
+</ul>
+</div>
+</section>
+</section>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="rst/package_references.html" class="btn btn-neutral float-right" title="Package references" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Robert Haas (Vienna, Austria).
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
