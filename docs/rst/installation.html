@@ -228,12 +228,19 @@ which may require a different version of some shared dependency.</p></li>
 <h2>Optional: Graphviz<a class="headerlink" href="#optional-graphviz" title="Permalink to this headline">¶</a></h2>
 <p>mevis requires
 <a class="reference external" href="https://graphviz.org/">Graphviz</a>
+and
+<a class="reference external" href="https://pygraphviz.github.io/">pygraphviz</a>
 to make some additional layout calculation algorithms available.
-It can not be installed via pip, but package managers of various
-operating systems support it. Instructions are available in the
-<a class="reference external" href="https://graphviz.org/download/">Graphviz installation guide</a>.</p>
-<p>In Debian and Ubuntu it can be installed with the package manager apt:</p>
+Graphviz itself can not be installed via pip, but package managers of
+various operating systems support it. Instructions are available in the
+<a class="reference external" href="https://graphviz.org/download/">Graphviz installation guide</a>.
+In Debian and Ubuntu it can be done with the package manager apt:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>sudo apt install graphviz libgraphviz-dev
+</pre></div>
+</div>
+<p>Afterwards pygraphviz can be installed with pip. More detailed instructions are available in the
+<a class="reference external" href="https://pygraphviz.github.io/documentation/stable/install.html">pygraphviz installation guide</a>:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>pip install pygraphviz
 </pre></div>
 </div>
 </section>
